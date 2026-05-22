@@ -111,6 +111,45 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .b-next{background:#DBEAFE;color:#1E40AF;}
 .b-wait{background:#F3F4F6;color:#374151;}
 
+/* MOBILE */
+@media(max-width:640px){
+  .hdr{padding:16px 16px 14px;}
+  .hdr-title{font-size:17px;}
+  .hdr-stamp{display:none;}
+  .hdr-kpi{grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;}
+  .kpi{border-left:none;border-top:1px solid rgba(255,255,255,.2);padding:10px 0 0;}
+  .kpi-val{font-size:16px;}
+  .kpi-lbl{font-size:10px;}
+  .tabs-wrap{padding:0 4px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .tabs{gap:0;min-width:max-content;}
+  .tab{padding:10px 12px;font-size:12px;}
+  .page{padding:14px 12px;}
+  .row4,.row3{grid-template-columns:1fr 1fr;gap:8px;}
+  .cv{font-size:17px;}
+  .cl{font-size:9px;}
+  .cs{font-size:10px;}
+  .buf-grid{grid-template-columns:1fr;gap:8px;}
+  .buf-arrow{font-size:14px;text-align:left;}
+  .buf-item,.buf-item.left,.buf-item.right{text-align:left;padding:10px 14px;background:var(--bg);border-radius:8px;}
+  .buf-val{font-size:18px;}
+  .steps-hd{grid-template-columns:2fr 1fr;padding:8px 10px;}
+  .steps-hd span:nth-child(3),.steps-hd span:nth-child(4){display:none;}
+  .step{grid-template-columns:2fr 1fr;gap:4px;padding:10px;}
+  .step>div:nth-child(3),.step>div:nth-child(4){display:none;}
+  .s-name{font-size:12px;}
+  .s-det{font-size:10px;}
+  .cmp{grid-template-columns:1fr;}
+  .tl-item{grid-template-columns:62px 14px 1fr;}
+  .tl-date{font-size:10px;}
+  .tl-card{padding:9px 11px;}
+  .tl-card h4{font-size:12px;}
+  .tl-card p,.tl-card li{font-size:11px;}
+  .chart-box canvas{height:180px!important;}
+  table{font-size:11px;display:block;overflow-x:auto;}
+  th,td{padding:7px 8px;white-space:nowrap;}
+  .alert{font-size:12px;padding:10px 12px;}
+}
+
 /* COMPARE */
 .cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;}
 .cmp-card{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
@@ -399,7 +438,7 @@ tfoot td{font-weight:700;font-size:13px;background:var(--bg);border-top:2px soli
       </div>
     </div>
   </div>
-  <div class="alert gold"><strong>Вывод:</strong> Разница — 2 месяца и ~AED 87K (зарплата ожидания + доп. маркетинг). Hard возможен при активном сопровождении и если KHDA Inspection проходит с первого раза. Soft — реалистичнее с учётом дубайской специфики.</div>
+  <div class="alert gold"><strong>Вывод:</strong> Разница — 2 месяца и ~$86K зарплата ожидания + AED 36,600 доп. маркетинг. Hard возможен при активном сопровождении и если KHDA Inspection проходит с первого раза. Soft — реалистичнее с учётом дубайской специфики.</div>
 </div>
 
 <!-- ===== BUDGET ===== -->
