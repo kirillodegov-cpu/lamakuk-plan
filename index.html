@@ -3,639 +3,220 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LaMakuk Village Dubai — Инвестиционный план</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<title>LaMakuk Village Dubai — Операционные расходы</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
-:root{--blue:#1B4F8A;--blue-l:#EBF4FF;--gold:#B8860B;--gold-l:#FFFBEB;--green:#1D7A5F;--green-l:#ECFDF5;--red:#B91C1C;--gray:#6B7280;--border:#E5E7EB;--bg:#F3F4F6;--text:#111827;--sub:#6B7280;}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);font-size:14px;}
-
-.hdr{background:var(--blue);color:#fff;padding:24px 40px 20px;}
-.hdr-top{display:flex;justify-content:space-between;align-items:flex-start;}
-.hdr-title{font-size:20px;font-weight:700;}
-.hdr-sub{font-size:12px;opacity:.7;margin-top:3px;}
-.hdr-stamp{font-size:11px;opacity:.6;text-align:right;}
-.hdr-kpi{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:18px;}
-.kpi{border-left:1px solid rgba(255,255,255,.2);padding:0 0 0 16px;}
-.kpi-val{font-size:19px;font-weight:700;}
-.kpi-lbl{font-size:11px;opacity:.65;margin-top:2px;}
-
-.tabs-wrap{background:#fff;border-bottom:1px solid var(--border);padding:0 40px;position:sticky;top:0;z-index:10;box-shadow:0 1px 4px rgba(0,0,0,.06);}
-.tabs{display:flex;}
-.tab{padding:12px 16px;font-size:13px;font-weight:500;color:var(--sub);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s;user-select:none;}
-.tab.active{color:var(--blue);border-bottom-color:var(--blue);}
-.tab:hover:not(.active){color:var(--text);}
-
-.page{max-width:1080px;margin:0 auto;padding:28px 40px;display:none;}
-.page.active{display:block;}
-
-.row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
-.row3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;}
-.card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;}
-.card.blue{background:var(--blue);border-color:var(--blue);}
-.card.blue .cl,.card.blue .cs{color:rgba(255,255,255,.65);}
-.card.blue .cv{color:#fff;}
-.card.gold{background:var(--gold-l);border-color:#FDE68A;}
-.card.gold .cv{color:var(--gold);}
-.card.green{background:var(--green-l);border-color:#A7F3D0;}
-.card.green .cv{color:var(--green);}
-.cl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--sub);margin-bottom:7px;}
-.cv{font-size:21px;font-weight:700;line-height:1;}
-.cs{font-size:11px;color:var(--sub);margin-top:4px;}
-
-.sec{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--sub);margin:24px 0 12px;}
-.sec:first-child{margin-top:0;}
-
-.alert{border-radius:8px;padding:12px 15px;font-size:13px;line-height:1.7;margin-bottom:16px;}
-.alert.blue{background:var(--blue-l);border:1px solid #BFDBFE;color:#1E3A5F;}
-.alert.gold{background:var(--gold-l);border:1px solid #FDE68A;color:#78350F;}
-.alert.green{background:var(--green-l);border:1px solid #A7F3D0;color:#064E3B;}
-.alert strong{font-weight:600;}
-
-/* BUDGET BAR */
-.bar{background:#fff;border:1px solid var(--border);border-radius:8px;padding:12px 15px;margin-bottom:7px;}
-.bar-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;}
-.bar-name{font-size:13px;font-weight:500;}
-.bar-amt{font-size:13px;font-weight:700;}
-.bar-bg{height:5px;background:var(--border);border-radius:3px;}
-.bar-fill{height:5px;border-radius:3px;}
-.bar-note{font-size:11px;color:var(--sub);margin-top:4px;}
-
-/* BUFFER BLOCK */
-.buf-block{background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin-bottom:20px;}
-.buf-grid{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:12px;align-items:center;}
-.buf-item{text-align:center;}
-.buf-item.left{text-align:left;}
-.buf-item.right{text-align:right;}
-.buf-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--sub);margin-bottom:6px;}
-.buf-val{font-size:22px;font-weight:700;}
-.buf-sub{font-size:11px;color:var(--sub);margin-top:3px;}
-.buf-arrow{font-size:20px;color:var(--border);text-align:center;}
-.buf-note{margin-top:14px;padding-top:12px;border-top:1px solid var(--border);font-size:12px;color:var(--sub);line-height:1.65;}
-
-/* TIMELINE */
-.tl{display:flex;flex-direction:column;}
-.tl-item{display:grid;grid-template-columns:90px 18px 1fr;gap:0 14px;}
-.tl-date{font-size:11px;font-weight:600;color:var(--sub);text-align:right;padding-top:5px;line-height:1.4;}
-.tl-spine{display:flex;flex-direction:column;align-items:center;}
-.tl-dot{width:13px;height:13px;border-radius:50%;border:2.5px solid;flex-shrink:0;margin-top:4px;}
-.tl-line{width:2px;flex:1;min-height:16px;margin-top:2px;}
-.tl-body{padding-bottom:14px;}
-.tl-card{background:#fff;border:1px solid var(--border);border-radius:8px;padding:11px 14px;}
-.tl-card.done{border-left:3px solid var(--green);background:#F0FDF4;}
-.tl-card.now{border-left:3px solid var(--gold);}
-.tl-card.open{border-left:3px solid var(--green);background:var(--green-l);}
-.tl-card h4{font-size:13px;font-weight:600;margin-bottom:4px;}
-.tl-card p{font-size:12px;color:var(--sub);line-height:1.6;}
-.tl-card ul{margin:7px 0 0 14px;}
-.tl-card li{font-size:12px;color:var(--sub);line-height:1.65;}
-.tl-amt{font-size:12px;font-weight:600;margin-top:6px;}
-.pill{display:inline-block;font-size:10px;font-weight:600;padding:1px 7px;border-radius:10px;margin-left:5px;vertical-align:middle;}
-.pill-done{background:#D1FAE5;color:#065F46;}
-.pill-now{background:#FEF3C7;color:#92400E;}
-
-/* STEPS */
-.steps{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:16px;}
-.steps-hd{display:grid;grid-template-columns:2.2fr 1fr 1fr 1.2fr;background:var(--bg);border-bottom:1px solid var(--border);padding:9px 14px;}
-.steps-hd span{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--sub);}
-.step{display:grid;grid-template-columns:2.2fr 1fr 1fr 1.2fr;padding:11px 14px;border-bottom:1px solid var(--border);align-items:start;}
-.step:last-child{border-bottom:none;}
-.step:hover{background:#FAFAFA;}
-.s-name{font-size:13px;font-weight:500;}
-.s-det{font-size:11px;color:var(--sub);margin-top:2px;}
-.s-dur{font-size:13px;font-weight:600;color:var(--text);}
-.s-when{font-size:12px;color:var(--sub);}
-.badge{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;}
-.b-done{background:#D1FAE5;color:#065F46;}
-.b-now{background:#FEF3C7;color:#92400E;}
-.b-next{background:#DBEAFE;color:#1E40AF;}
-.b-wait{background:#F3F4F6;color:#374151;}
-
-/* MOBILE */
-@media(max-width:640px){
-  .hdr{padding:16px 16px 14px;}
-  .hdr-title{font-size:17px;}
-  .hdr-stamp{display:none;}
-  .hdr-kpi{grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;}
-  .kpi{border-left:none;border-top:1px solid rgba(255,255,255,.2);padding:10px 0 0;}
-  .kpi-val{font-size:16px;}
-  .kpi-lbl{font-size:10px;}
-  .tabs-wrap{padding:0 4px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
-  .tabs{gap:0;min-width:max-content;}
-  .tab{padding:10px 12px;font-size:12px;}
-  .page{padding:14px 12px;}
-  .row4,.row3{grid-template-columns:1fr 1fr;gap:8px;}
-  .cv{font-size:17px;}
-  .cl{font-size:9px;}
-  .cs{font-size:10px;}
-  .buf-grid{grid-template-columns:1fr;gap:8px;}
-  .buf-arrow{font-size:14px;text-align:left;}
-  .buf-item,.buf-item.left,.buf-item.right{text-align:left;padding:10px 14px;background:var(--bg);border-radius:8px;}
-  .buf-val{font-size:18px;}
-  .steps-hd{grid-template-columns:2fr 1fr;padding:8px 10px;}
-  .steps-hd span:nth-child(3),.steps-hd span:nth-child(4){display:none;}
-  .step{grid-template-columns:2fr 1fr;gap:4px;padding:10px;}
-  .step>div:nth-child(3),.step>div:nth-child(4){display:none;}
-  .s-name{font-size:12px;}
-  .s-det{font-size:10px;}
-  .cmp{grid-template-columns:1fr;}
-  .tl-item{grid-template-columns:62px 14px 1fr;}
-  .tl-date{font-size:10px;}
-  .tl-card{padding:9px 11px;}
-  .tl-card h4{font-size:12px;}
-  .tl-card p,.tl-card li{font-size:11px;}
-  .chart-box canvas{height:180px!important;}
-  table{font-size:11px;display:block;overflow-x:auto;}
-  th,td{padding:7px 8px;white-space:nowrap;}
-  .alert{font-size:12px;padding:10px 12px;}
+:root {
+  --bg: #0f1117;
+  --card: #1a1d27;
+  --border: #2a2d3a;
+  --text: #e8eaf0;
+  --muted: #8b90a0;
+  --accent: #4f7fff;
+  --green: #22c55e;
+  --yellow: #f59e0b;
+  --red: #ef4444;
+  --purple: #a855f7;
 }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 15px; line-height: 1.5; }
 
-/* COMPARE */
-.cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;}
-.cmp-card{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
-.cmp-hd{padding:14px 18px;border-bottom:1px solid var(--border);}
-.cmp-hd h3{font-size:14px;font-weight:700;}
-.cmp-hd p{font-size:11px;color:var(--sub);margin-top:2px;}
-.cmp-body{padding:0 18px;}
-.cmp-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border);font-size:13px;}
-.cmp-row:last-child{border-bottom:none;font-weight:700;}
-.cmp-lbl{color:var(--sub);}
-.diff{color:var(--red);font-size:11px;margin-left:4px;}
+.header { background: linear-gradient(135deg, #1e2235 0%, #0f1117 100%); border-bottom: 1px solid var(--border); padding: 28px 20px 20px; }
+.header h1 { font-size: 22px; font-weight: 700; color: #fff; }
+.header p { color: var(--muted); font-size: 13px; margin-top: 4px; }
+.badge { display: inline-block; background: #22c55e18; color: var(--green); border: 1px solid #22c55e33; border-radius: 20px; font-size: 11px; font-weight: 600; padding: 2px 10px; margin-top: 8px; }
 
-/* CHART */
-.chart-box{background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px;margin-bottom:20px;}
-.chart-box canvas{height:230px!important;}
+.hero { padding: 28px 20px; text-align: center; border-bottom: 1px solid var(--border); }
+.hero-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.hero-amount { font-size: 48px; font-weight: 800; color: #fff; letter-spacing: -1px; }
+.hero-currency { font-size: 22px; color: var(--muted); font-weight: 400; }
+.hero-sub { font-size: 13px; color: var(--muted); margin-top: 8px; }
 
-/* TABLE */
-table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;border:1px solid var(--border);}
-thead{background:var(--bg);}
-th{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--sub);padding:9px 13px;text-align:right;border-bottom:1px solid var(--border);}
-th:first-child{text-align:left;}
-td{padding:10px 13px;font-size:13px;border-bottom:1px solid var(--border);text-align:right;}
-td:first-child{text-align:left;font-weight:500;}
-tr:last-child td{border-bottom:none;}
-tfoot td{font-weight:700;font-size:13px;background:var(--bg);border-top:2px solid var(--border);}
-.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;}
+.chart-wrap { padding: 20px; border-bottom: 1px solid var(--border); max-width: 340px; margin: 0 auto; }
+
+.content { padding: 16px 16px 40px; max-width: 700px; margin: 0 auto; }
+
+.cat-block { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+.cat-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; cursor: pointer; user-select: none; }
+.cat-header:hover { background: #ffffff08; }
+.cat-title { font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px; }
+.cat-right { display: flex; align-items: center; gap: 12px; }
+.cat-amount { font-weight: 700; font-size: 16px; color: #fff; }
+.cat-count { font-size: 12px; color: var(--muted); background: #ffffff10; border-radius: 10px; padding: 2px 8px; }
+.arrow { color: var(--muted); font-size: 12px; transition: transform 0.2s; }
+.arrow.open { transform: rotate(90deg); }
+
+.items-list { border-top: 1px solid var(--border); padding: 4px 0; }
+.item-row { display: flex; align-items: flex-start; justify-content: space-between; padding: 9px 16px; gap: 12px; }
+.item-row:not(:last-child) { border-bottom: 1px solid #1e2130; }
+.item-left { display: flex; align-items: flex-start; gap: 8px; flex: 1; min-width: 0; }
+.item-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-top: 7px; flex-shrink: 0; }
+.item-name { font-size: 13px; color: var(--text); word-break: break-word; }
+.item-status { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.item-price { font-size: 14px; font-weight: 600; color: var(--yellow); white-space: nowrap; }
+
+.status-badge { display: inline-block; font-size: 10px; padding: 1px 7px; border-radius: 8px; font-weight: 500; }
+.s-inprogress { background: #4f7fff22; color: #4f7fff; }
+.s-pending { background: #f59e0b22; color: #f59e0b; }
+.s-waitpay { background: #a855f722; color: #a855f7; }
+.s-onhold { background: #6b728022; color: #9ca3af; }
+.s-todo { background: #22c55e22; color: #22c55e; }
+.s-other { background: #ffffff10; color: var(--muted); }
 </style>
 </head>
 <body>
 
-<div class="hdr">
-  <div class="hdr-top">
-    <div>
-      <div class="hdr-title">🌟 LaMakuk Village Dubai</div>
-      <div class="hdr-sub">Early Childhood Centre · KHDA Regulated · Инвестиционный план для партнёров</div>
+<div class="header">
+  <h1>🏗 LaMakuk Village Dubai</h1>
+  <p>Операционные расходы до открытия</p>
+  <span class="badge">Обновлено 12 октября 2026</span>
+</div>
+
+<div class="hero">
+  <div class="hero-label">Осталось оплатить</div>
+  <div class="hero-amount">247<span style="color:#4a5568">,</span>968 <span class="hero-currency">AED</span></div>
+  <div class="hero-sub">4 категории · 31 позиция</div>
+</div>
+
+<div class="chart-wrap">
+  <canvas id="chart" height="280"></canvas>
+</div>
+
+<div class="content">
+
+<!-- Classroom equipment -->
+<div class="cat-block">
+  <div class="cat-header" onclick="toggle('cls')">
+    <div class="cat-title"><span>📚</span> Оснащение классов</div>
+    <div class="cat-right">
+      <span class="cat-amount">73 623 AED</span>
+      <span class="cat-count">8</span>
+      <span class="arrow" id="arrow-cls">▶</span>
     </div>
-    <div class="hdr-stamp">Данные из Notion<br>Актуально: май 2026</div>
   </div>
-  <div class="hdr-kpi">
-    <div class="kpi"><div class="kpi-val">AED 1.55M</div><div class="kpi-lbl">Общий бюджет</div></div>
-    <div class="kpi"><div class="kpi-val">Сент. 2026</div><div class="kpi-lbl">Открытие (Hard)</div></div>
-    <div class="kpi"><div class="kpi-val">Нояб. 2026</div><div class="kpi-lbl">Открытие (Soft)</div></div>
-    <div class="kpi"><div class="kpi-val">✅ Фаза 4</div><div class="kpi-lbl">Pre-Approval получен</div></div>
-    <div class="kpi"><div class="kpi-val">AED 158K/мес</div><div class="kpi-lbl">Зарплата команды</div></div>
+  <div class="items-list" id="items-cls" style="display:none">
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Купить постельное белье для кроваток, горшки</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">25 800</div></div>
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Форма для персонала</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">17 000</div></div>
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Форма для детей</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">10 823</div></div>
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Стулья для родителей раскладные</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">5 000</div></div>
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Таблички на двери, папки для договоров, стикеры на шкафчики</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">5 000</div></div>
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Пакеты и рекламные материалы</div><div class="item-status"><span class="status-badge s-waitpay">Waiting Pay</span></div></div></div><div class="item-price">5 000</div></div>
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Маркерные доски, пробковые доски</div><div class="item-status"><span class="status-badge s-onhold">On Hold</span></div></div></div><div class="item-price">5 000</div></div>
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Форма для детей (доп)</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">—</div></div>
   </div>
 </div>
 
-<div class="tabs-wrap">
-  <div class="tabs">
-    <div class="tab active" onclick="go('overview')">Обзор</div>
-    <div class="tab" onclick="go('steps')">Шаги и время</div>
-    <div class="tab" onclick="go('hard')">Hard</div>
-    <div class="tab" onclick="go('soft')">Soft</div>
-    <div class="tab" onclick="go('compare')">Сравнение</div>
-    <div class="tab" onclick="go('budget')">Бюджет</div>
+<!-- Decorative finishing -->
+<div class="cat-block">
+  <div class="cat-header" onclick="toggle('dec')">
+    <div class="cat-title"><span>🎨</span> Декор и отделка</div>
+    <div class="cat-right">
+      <span class="cat-amount">73 545 AED</span>
+      <span class="cat-count">8</span>
+      <span class="arrow" id="arrow-dec">▶</span>
+    </div>
+  </div>
+  <div class="items-list" id="items-dec" style="display:none">
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Декор детский</div><div class="item-status"><span class="status-badge s-pending">Pending</span></div></div></div><div class="item-price">27 000</div></div>
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Вывеска на вход + мальчик + зеркало</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">15 400</div></div>
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Внешний декор здания и цветы</div><div class="item-status"><span class="status-badge s-pending">Pending</span></div></div></div><div class="item-price">10 000</div></div>
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Стеллажи в склад</div><div class="item-status"><span class="status-badge s-pending">Pending</span></div></div></div><div class="item-price">6 000</div></div>
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Изготовление ресепшена</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">5 145</div></div>
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Мебель в комнату для персонала</div><div class="item-status"><span class="status-badge s-pending">Pending</span></div></div></div><div class="item-price">5 000</div></div>
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Оснастить кухню (раздача еды)</div><div class="item-status"><span class="status-badge s-pending">Pending</span></div></div></div><div class="item-price">3 000</div></div>
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Оборудовать медицинский кабинет</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">2 000</div></div>
   </div>
 </div>
 
-<!-- ===== OVERVIEW ===== -->
-<div class="page active" id="page-overview">
-  <div class="row4">
-    <div class="card blue"><div class="cl">Общий бюджет</div><div class="cv">AED 1,546,299</div><div class="cs"></div></div>
-    <div class="card gold"><div class="cl">Пик платежей — Июнь</div><div class="cv">AED 536K</div><div class="cs">35% бюджета за 1 месяц</div></div>
-    <div class="card"><div class="cl">Зарплата (после запуска)</div><div class="cv">AED 158K/мес</div><div class="cs"></div></div>
-    <div class="card"><div class="cl">Статус</div><div class="cv" style="font-size:15px">✅ Pre-Approval</div><div class="cs">KHDA одобрен</div></div>
-  </div>
-
-  <div class="buf-block">
-    <div class="buf-grid">
-      <div class="buf-item left">
-        <div class="buf-label">Зафиксированный бюджет</div>
-        <div class="buf-val">AED 1,546,299</div>
-        <div class="buf-sub"></div>
-      </div>
-      <div class="buf-arrow">+</div>
-      <div class="buf-item" style="text-align:center">
-        <div class="buf-label">Резерв 20% (непредвиденное)</div>
-        <div class="buf-val" style="color:var(--gold)">AED 309,260</div>
-        <div class="buf-sub"></div>
-      </div>
-      <div class="buf-arrow">=</div>
-      <div class="buf-item right">
-        <div class="buf-label">Итого с резервом</div>
-        <div class="buf-val" style="color:var(--blue)">AED 1,855,559</div>
-        <div class="buf-sub"></div>
-      </div>
-    </div>
-    <div class="buf-note">
-      <strong style="color:#92400E">⚠ Рекомендация:</strong> В условиях Дубая стандартная практика — закладывать резерв 20% на непредвиденные расходы: задержки регуляторных процессов, корректировки по требованию KHDA, доп. платежи поставщикам. Резерв не тратится, пока не возникнет необходимость.
+<!-- Repair works -->
+<div class="cat-block">
+  <div class="cat-header" onclick="toggle('rep')">
+    <div class="cat-title"><span>🔧</span> Ремонтные работы</div>
+    <div class="cat-right">
+      <span class="cat-amount">58 850 AED</span>
+      <span class="cat-count">8</span>
+      <span class="arrow" id="arrow-rep">▶</span>
     </div>
   </div>
-
-  <div class="alert blue"><strong>✅ Pre-approval KHDA получен!</strong> FAHU оплачен. Ремонтные работы продолжаются (DEWA, Sand Area). Centre Manager Approval в процессе. Следующий шаг — Commercial License и соответствие помещения всем требованиям.</div>
-
-  <div class="sec">Распределение бюджета по категориям</div>
-  <div id="bars"></div>
-</div>
-
-<!-- ===== STEPS ===== -->
-<div class="page" id="page-steps">
-  <div class="alert blue"><strong>Для партнёров:</strong> Ниже — все ключевые шаги от текущего момента до открытия с реальными сроками. Некоторые шаги идут параллельно.</div>
-
-  <div class="sec">Лицензирование и разрешения</div>
-  <div class="steps">
-    <div class="steps-hd"><span>Шаг</span><span>Срок</span><span>Когда</span><span>Статус</span></div>
-    <div class="step">
-      <div><div class="s-name">Pre-approval KHDA</div><div class="s-det">✅ Получен и зафиксирован в Notion</div></div>
-      <div class="s-dur">—</div><div class="s-when">Май 2026</div>
-      <div><span class="badge b-done">✓ Готово</span></div>
-    </div>
-    <div class="step">
-      <div><div class="s-name">Centre Manager Approval</div><div class="s-det">KHDA утверждает директора центра</div></div>
-      <div class="s-dur">~10 дней</div><div class="s-when">Май–Июнь</div>
-      <div><span class="badge b-now">В процессе</span></div>
-    </div>
-    <div class="step">
-      <div><div class="s-name">MOA — нотариальное заверение</div><div class="s-det">Меморандум об ассоциации · AED 50,000</div></div>
-      <div class="s-dur">1–2 нед.</div><div class="s-when">Июнь</div>
-      <div><span class="badge b-next">Следующий</span></div>
-    </div>
-    <div class="step">
-      <div><div class="s-name">Commercial License (DED)</div><div class="s-det">Trade license с activity: educational services</div></div>
-      <div class="s-dur">2–3 нед.</div><div class="s-when">Июнь</div>
-      <div><span class="badge b-next">Следующий</span></div>
-    </div>
-    <div class="step">
-      <div><div class="s-name">Соответствие помещения</div><div class="s-det">Dubai Municipality approval · Civil Defence NOC · Fire safety</div></div>
-      <div class="s-dur">До 30 июня</div><div class="s-when">Июнь</div>
-      <div><span class="badge b-next">Параллельно</span></div>
-    </div>
-    <div class="step">
-      <div><div class="s-name">KHDA Building Inspection</div><div class="s-det">On-site проверка: безопасность, санитария, игровые зоны</div></div>
-      <div class="s-dur">~10 дней</div><div class="s-when">Июль</div>
-      <div><span class="badge b-wait">После лицензии</span></div>
-    </div>
-    <div class="step">
-      <div><div class="s-name">Final KHDA Educational Permit</div><div class="s-det">Финальное разрешение · AED 10,000 · <strong>⚠ занимает ~34 дня</strong></div></div>
-      <div class="s-dur">~34 дня</div><div class="s-when">Июль–Авг</div>
-      <div><span class="badge b-wait">Критический путь</span></div>
-    </div>
-  </div>
-
-  <div class="sec">Закупки и оснащение</div>
-  <div class="steps">
-    <div class="steps-hd"><span>Шаг</span><span>Срок</span><span>Когда</span><span>Сумма</span></div>
-    <div class="step">
-      <div><div class="s-name">Финализировать котировки</div><div class="s-det">Ресепшен, кухня, шторы, облака, plexiglass</div></div>
-      <div class="s-dur">1–2 нед.</div><div class="s-when">Июнь</div>
-      <div style="font-size:12px;color:var(--sub)">—</div>
-    </div>
-    <div class="step">
-      <div><div class="s-name">Заказать декор и мебель</div><div class="s-det">Ресепшен, шторы, вывески — производство 10–30 дней</div></div>
-      <div class="s-dur">Заказ: июнь<br>Доставка: июль</div><div class="s-when">Июнь старт</div>
-      <div style="font-size:13px;font-weight:600;color:var(--blue)">AED ~100K</div>
-    </div>
-    <div class="step">
-      <div><div class="s-name">Закупка оборудования для классов</div><div class="s-det">Игрушки, маты, форма, постельное, метод. материалы</div></div>
-      <div class="s-dur">2–4 нед.</div><div class="s-when">Июль</div>
-      <div style="font-size:13px;font-weight:600;color:var(--blue)">AED 224,364</div>
-    </div>
-    <div class="step">
-      <div><div class="s-name">Закупка электроники</div><div class="s-det">Интерактивные доски, проекторы, компьютеры, ТВ, техника</div></div>
-      <div class="s-dur">1–2 нед.</div><div class="s-when">Июль</div>
-      <div style="font-size:13px;font-weight:600;color:var(--blue)">AED 92,501</div>
-    </div>
-    <div class="step">
-      <div><div class="s-name">Монтаж и финальный декор</div><div class="s-det">Установка всего оборудования, финальная проверка готовности</div></div>
-      <div class="s-dur">2–3 нед.</div><div class="s-when">Июль–Авг</div>
-      <div><span class="badge b-wait">После ремонта</span></div>
-    </div>
-  </div>
-
-  <div class="sec">Найм и оформление персонала</div>
-  <div class="alert green"><strong>✓ Менеджер/директор центра уже в команде.</strong> Предстоит нанять: учителей и воспитателей, помощников, обслуживающий персонал. После полного набора штата ежемесячный фонд заработной платы составит <strong>AED 158,000/мес (≈ AED 158,000/мес)</strong>.</div>
-  <div class="steps">
-    <div class="steps-hd"><span>Шаг</span><span>Срок</span><span>Когда</span><span>Сумма</span></div>
-    <div class="step">
-      <div><div class="s-name">Разместить вакансии</div><div class="s-det">Учителя, помощники, кухня, охрана, уборка</div></div>
-      <div class="s-dur">1 нед.</div><div class="s-when">Июнь</div>
-      <div><span class="badge b-next">To Do</span></div>
-    </div>
-    <div class="step">
-      <div><div class="s-name">Собеседования и отбор</div><div class="s-det">Проверка квалификаций KHDA, good conduct certificate</div></div>
-      <div class="s-dur">3–4 нед.</div><div class="s-when">Июнь–Июль</div>
-      <div><span class="badge b-next">To Do</span></div>
-    </div>
-    <div class="step">
-      <div><div class="s-name">Job Offers и трудовые договоры</div><div class="s-det">Согласование условий, подписание контрактов</div></div>
-      <div class="s-dur">1–2 нед.</div><div class="s-when">Июль</div>
-      <div><span class="badge b-wait">После отбора</span></div>
-    </div>
-    <div class="step">
-      <div><div class="s-name">Оформление виз</div><div class="s-det">Подача документов, медосмотр, Emirates ID</div></div>
-      <div class="s-dur">3–5 нед.</div><div class="s-when">Июль–Авг</div>
-      <div style="font-size:13px;font-weight:600;color:var(--blue)">AED 91,000</div>
-    </div>
-    <div class="step">
-      <div><div class="s-name">Страховка персонала</div><div class="s-det">Медицинская страховка для всех сотрудников</div></div>
-      <div class="s-dur">1 нед.</div><div class="s-when">Август</div>
-      <div style="font-size:13px;font-weight:600;color:var(--blue)">AED 25,942</div>
-    </div>
-    <div class="step">
-      <div><div class="s-name">Онбординг и стажировка</div><div class="s-det">Обучение команды, child protection policy, протоколы</div></div>
-      <div class="s-dur">2–3 нед.</div><div class="s-when">Авг–Сент</div>
-      <div style="font-size:13px;font-weight:600;color:var(--blue)">AED 25,620</div>
-    </div>
-  </div>
-
-  <div class="sec">Маркетинг и запуск</div>
-  <div class="steps">
-    <div class="steps-hd"><span>Шаг</span><span>Срок</span><span>Когда</span><span>Сумма</span></div>
-    <div class="step">
-      <div><div class="s-name">Маркетинговая кампания</div><div class="s-det">Digital, community outreach, enrollment · AED 18,300/мес · продолжается до открытия</div></div>
-      <div class="s-dur">Ежемесячно</div><div class="s-when">Июнь → открытие</div>
-      <div style="font-size:13px;font-weight:600;color:var(--blue)">AED 18,300/мес</div>
-    </div>
-    <div class="step">
-      <div><div class="s-name">Open Day / пробные занятия</div><div class="s-det">До официального открытия — для привлечения первых семей</div></div>
-      <div class="s-dur">1–2 нед.</div><div class="s-when">Перед открытием</div>
-      <div><span class="badge b-wait">Перед открытием</span></div>
-    </div>
-    <div class="step">
-      <div><div class="s-name">🎉 Открытие</div><div class="s-det">Первые дети, операционный старт</div></div>
-      <div class="s-dur" style="color:var(--green);font-weight:700">Hard: Сент.<br>Soft: Нояб.</div>
-      <div class="s-when">—</div>
-      <div><span class="badge" style="background:#D1FAE5;color:#065F46">Цель</span></div>
-    </div>
+  <div class="items-list" id="items-rep" style="display:none">
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Заборы возле площадок</div><div class="item-status"><span class="status-badge s-pending">Pending</span></div></div></div><div class="item-price">40 000</div></div>
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Оплата пожарной безопасности на год</div><div class="item-status"><span class="status-badge s-waitpay">Waiting Pay</span></div></div></div><div class="item-price">4 200</div></div>
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Установка пожарной системы 24/7</div><div class="item-status"><span class="status-badge s-waitpay">Waiting Pay</span></div></div></div><div class="item-price">3 150</div></div>
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Парковка внешняя</div><div class="item-status"><span class="status-badge s-pending">Pending</span></div></div></div><div class="item-price">3 000</div></div>
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Наклейки на пол</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">3 000</div></div>
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Зеленые растения в клумбы</div><div class="item-status"><span class="status-badge s-pending">Pending</span></div></div></div><div class="item-price">3 000</div></div>
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Резиновые коврики</div><div class="item-status"><span class="status-badge s-pending">Pending</span></div></div></div><div class="item-price">1 500</div></div>
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Сундук для игрушек покрасить</div><div class="item-status"><span class="status-badge s-pending">Pending</span></div></div></div><div class="item-price">1 000</div></div>
   </div>
 </div>
 
-<!-- ===== HARD ===== -->
-<div class="page" id="page-hard">
-  <div style="display:inline-flex;align-items:center;gap:8px;background:var(--blue-l);border:1px solid #BFDBFE;color:var(--blue);padding:5px 14px;border-radius:20px;font-size:12px;font-weight:600;margin-bottom:18px;">🚀 Hard сценарий — Открытие: 1 сентября 2026</div>
-  <div class="row3">
-    <div class="card blue"><div class="cl">Открытие</div><div class="cv">1 Сент. 2026</div><div class="cs">~3.5 месяца</div></div>
-    <div class="card"><div class="cl">Общий бюджет (инвест.)</div><div class="cv">AED 1.55M</div><div class="cs">+ зарплата с авг: AED 158K/мес · резерв +20%</div></div>
-    <div class="card gold"><div class="cl">Главный риск</div><div class="cv" style="font-size:16px">KHDA Permit</div><div class="cs">~34 дня, нельзя ускорить</div></div>
-  </div>
-  <div class="alert blue"><strong>✅ Pre-approval KHDA получен. FAHU оплачен.</strong> Допущения: ремонт завершён к 30 июня · Commercial license к 20 июня · KHDA Inspection с первого раза · найм идёт параллельно с лицензированием · зарплата команды стартует с августа (AED 158K/мес).</div>
-  <div class="sec">Таймлайн</div>
-  <div class="tl" id="tl-hard"></div>
-</div>
-
-<!-- ===== SOFT ===== -->
-<div class="page" id="page-soft">
-  <div style="display:inline-flex;align-items:center;gap:8px;background:var(--gold-l);border:1px solid #FDE68A;color:#92400E;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:600;margin-bottom:18px;">🛡 Soft сценарий — Открытие: 1 ноября 2026</div>
-  <div class="row4">
-    <div class="card gold"><div class="cl">Открытие</div><div class="cv" style="color:#92400E">1 Нояб. 2026</div><div class="cs">~5.5 месяцев</div></div>
-    <div class="card"><div class="cl">Общий бюджет (инвест.)</div><div class="cv">AED 1.55M</div><div class="cs">+ зарплата с сент: AED 158K/мес · резерв +20%</div></div>
-    <div class="card"><div class="cl">Доп. на ожидание</div><div class="cv">+AED 184K</div><div class="cs">зарплата сент–окт (до открытия)</div></div>
-    <div class="card"><div class="cl">Маркетинг до открытия</div><div class="cv">+AED 18,300/мес</div><div class="cs">каждый доп. месяц задержки</div></div>
-  </div>
-  <div class="alert gold"><strong>Логика сценария:</strong> Учитывает реальную специфику Дубая — задержки KHDA, повторные инспекции, ожидание DM и Civil Defence. Каждый этап с буфером 2–3 нед. Аренда помещения начинается с ноября. Маркетинг идёт каждый месяц до открытия (AED 18,300/мес) — каждый дополнительный месяц задержки увеличивает маркетинговый бюджет.</div>
-  <div class="sec">Таймлайн</div>
-  <div class="tl" id="tl-soft"></div>
-</div>
-
-<!-- ===== COMPARE ===== -->
-<div class="page" id="page-compare">
-  <div class="sec">Сравнение двух сценариев</div>
-  <div class="cmp">
-    <div class="cmp-card">
-      <div class="cmp-hd" style="background:var(--blue-l)"><h3 style="color:var(--blue)">🚀 Hard</h3><p>Активное сопровождение, без задержек</p></div>
-      <div class="cmp-body">
-        <div class="cmp-row"><span class="cmp-lbl">Дата открытия</span><span>1 сентября 2026</span></div>
-        <div class="cmp-row"><span class="cmp-lbl">Срок от сегодня</span><span>~3.5 месяца</span></div>
-        <div class="cmp-row"><span class="cmp-lbl">Commercial License</span><span>~20 июня</span></div>
-        <div class="cmp-row"><span class="cmp-lbl">KHDA Inspection</span><span>1–10 июля</span></div>
-        <div class="cmp-row"><span class="cmp-lbl">Final KHDA Permit</span><span>~15 августа</span></div>
-        <div class="cmp-row"><span class="cmp-lbl">Зарплата команды старт</span><span>Август (AED 158K/мес)</span></div>
-        <div class="cmp-row"><span class="cmp-lbl">Маркетинг</span><span>Июнь–Сентябрь (4 мес)</span></div>
-        <div class="cmp-row"><span class="cmp-lbl">Итого бюджет</span><span>AED 1,546,299</span></div>
-      </div>
-    </div>
-    <div class="cmp-card">
-      <div class="cmp-hd" style="background:var(--gold-l)"><h3 style="color:#92400E">🛡 Soft</h3><p>С буфером на задержки — реалистично</p></div>
-      <div class="cmp-body">
-        <div class="cmp-row"><span class="cmp-lbl">Дата открытия</span><span>1 ноября 2026 <span class="diff">+2 мес.</span></span></div>
-        <div class="cmp-row"><span class="cmp-lbl">Срок от сегодня</span><span>~5.5 месяцев</span></div>
-        <div class="cmp-row"><span class="cmp-lbl">Commercial License</span><span>~15 июля <span class="diff">+4 нед.</span></span></div>
-        <div class="cmp-row"><span class="cmp-lbl">KHDA Inspection</span><span>1–10 августа <span class="diff">+1 мес.</span></span></div>
-        <div class="cmp-row"><span class="cmp-lbl">Final KHDA Permit</span><span>~15 сентября <span class="diff">+1 мес.</span></span></div>
-        <div class="cmp-row"><span class="cmp-lbl">Зарплата команды старт</span><span>Сентябрь (AED 158K/мес)</span></div>
-        <div class="cmp-row"><span class="cmp-lbl">Маркетинг</span><span>Июнь–Ноябрь (6 мес) <span class="diff">+AED 36,600</span></span></div>
-        <div class="cmp-row"><span class="cmp-lbl">Итого бюджет</span><span>AED 1,546,299 <span class="diff">+~87K</span></span></div>
-      </div>
+<!-- Electronic equipment -->
+<div class="cat-block">
+  <div class="cat-header" onclick="toggle('elec')">
+    <div class="cat-title"><span>💻</span> Электроника</div>
+    <div class="cat-right">
+      <span class="cat-amount">41 950 AED</span>
+      <span class="cat-count">8</span>
+      <span class="arrow" id="arrow-elec">▶</span>
     </div>
   </div>
-  <div class="alert gold"><strong>Вывод:</strong> Разница — 2 месяца и ~AED 316K зарплата ожидания + AED 36,600 доп. маркетинг. Hard возможен при активном сопровождении и если KHDA Inspection проходит с первого раза. Soft — реалистичнее с учётом дубайской специфики.</div>
+  <div class="items-list" id="items-elec" style="display:none">
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Интерактивные доски</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">21 600</div></div>
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Бактерицидный рециркулятор</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">9 500</div></div>
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">TV</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">5 000</div></div>
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Инвентарь для садовника, инструменты для мелкого ремонта</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">3 000</div></div>
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Микроволновка</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">1 000</div></div>
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Холодильник медицинский кабинет</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">800</div></div>
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Весы кухонные и напольные</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">550</div></div>
+    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Ламинаторы, биндер</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">500</div></div>
+  </div>
 </div>
 
-<!-- ===== BUDGET ===== -->
-<div class="page" id="page-budget">
-  <div class="row4">
-    <div class="card"><div class="cl">Май 2026</div><div class="cv">AED 61K</div><div class="cs">4% · FAHU оплачен</div></div>
-    <div class="card blue"><div class="cl">Июнь 2026 — ПИК</div><div class="cv">AED 536K</div><div class="cs">35% · ремонт + декор + MOA</div></div>
-    <div class="card"><div class="cl">Июль 2026</div><div class="cv">AED 527K</div><div class="cs">34% · оснащение + электроника</div></div>
-    <div class="card"><div class="cl">Авг–Сент 2026</div><div class="cv">AED 400K</div><div class="cs">26% · визы + зарплата</div></div>
-  </div>
-  <div class="alert gold"><strong>⚠ Новый пик — Июнь AED 536K:</strong> В июне сходятся: финальные ремонтные счета (AED 301K), декор и мебель (AED 130K), MOA нотариально (AED 50K). Июль тоже тяжёлый — AED 527K (всё оснащение и электроника). Деньги нужно резервировать прямо сейчас.</div>
-  <div class="chart-box">
-    <div class="sec" style="margin-top:0">Платежи по месяцам (AED)</div>
-    <canvas id="chart-months"></canvas>
-  </div>
-  <div class="sec">Детализация по категориям</div>
-  <table>
-    <thead><tr><th>Категория</th><th>Май</th><th>Июнь</th><th>Июль</th><th>Авг</th><th>Сент</th><th>Итого</th></tr></thead>
-    <tbody>
-      <tr><td><span class="dot" style="background:#1B4F8A"></span>Ремонтные работы</td><td>—</td><td>264,588</td><td>—</td><td>—</td><td>—</td><td><strong>300,994</strong></td></tr>
-      <tr><td><span class="dot" style="background:#1D7A5F"></span>Оснащение и декор</td><td>—</td><td>156,465</td><td>285,458</td><td>—</td><td>—</td><td><strong>441,923</strong></td></tr>
-      <tr><td><span class="dot" style="background:#3266ad"></span>Электроника</td><td>—</td><td>—</td><td>92,501</td><td>—</td><td>—</td><td><strong>92,501</strong></td></tr>
-      <tr><td><span class="dot" style="background:#6B7280"></span>Визы и страховка</td><td>—</td><td>—</td><td>—</td><td>116,942</td><td>—</td><td><strong>142,562</strong></td></tr>
-      <tr><td><span class="dot" style="background:#B8860B"></span>Лицензии</td><td>—</td><td>50,000</td><td>29,300</td><td>—</td><td>—</td><td><strong>79,300</strong></td></tr>
-      <tr><td><span class="dot" style="background:#7F77DD"></span>Заработная плата</td><td>40,260</td><td>40,260</td><td>55,600</td><td>69,500</td><td>91,500</td><td><strong>381,340</strong></td></tr>
-      <tr><td><span class="dot" style="background:#E879F9"></span>Маркетинг</td><td>—</td><td>18,300</td><td>18,300</td><td>18,300</td><td>18,300</td><td><strong>73,200</strong></td></tr>
-      <tr><td><span class="dot" style="background:#F87171"></span>Прочие расходы</td><td>20,300</td><td>6,322</td><td>45,866</td><td>16,400</td><td>—</td><td><strong>34,480</strong></td></tr>
-    </tbody>
-    <tfoot><tr><td>ИТОГО</td><td>60,560</td><td>535,935</td><td>527,025</td><td>221,142</td><td>179,300</td><td>AED 1,546,299</td></tr></tfoot>
-  </table>
 </div>
 
 <script>
-// ---- КАТЕГОРИИ ----
+function toggle(id) {
+  const items = document.getElementById('items-' + id);
+  const arrow = document.getElementById('arrow-' + id);
+  const open = items.style.display !== 'none';
+  items.style.display = open ? 'none' : 'block';
+  arrow.classList.toggle('open', !open);
+}
+
 const CATS = [
-  {name:'Оснащение и декор',  cost:441923, pct:31, color:'#1D7A5F', note:'Мебель, декор классов, игровое оборудование'},
-  {name:'Заработная плата',   cost:381340, pct:27, color:'#7F77DD', note:'Зарплата команды запуска апр–сент (без маркетинга)'},
-  {name:'Ремонтные работы',   cost:300994, pct:19, color:'#1B4F8A', note:'FAHU оплачен · + новые работы: Olga Invoice, Sand Area, Clouds, Toilet Partitions и др.'},
-  {name:'Визы и страховка',   cost:142562, pct:10, color:'#6B7280', note:'Визы сотрудников, страховка, онбординг'},
-  {name:'Электроника',        cost:92501,  pct:6,  color:'#3266ad', note:'Доски, проекторы, компьютеры, ТВ, техника'},
-  {name:'Лицензии',           cost:79300,  pct:6,  color:'#B8860B', note:'MOA, trade license, KHDA permit (~AED 10K), юристы'},
-  {name:'Маркетинг',          cost:73200,  pct:5,  color:'#E879F9', note:'4 месяца по AED 18,300/мес (Hard) · 6 мес (Soft)'},
-  {name:'Прочие расходы',     cost:34480,  pct:2,  color:'#F87171', note:'Командировки launch team (июнь, июль, август)'},
+  {name:'Оснащение классов', amt:73623, color:'#1D7A5F'},
+  {name:'Декор и отделка', amt:73545, color:'#7F77DD'},
+  {name:'Ремонтные работы', amt:58850, color:'#1B4F8A'},
+  {name:'Электроника', amt:41950, color:'#3266ad'},
 ];
 
-// ---- ТАЙМЛАЙНЫ ----
-const TL_HARD = [
-  {date:'Май 2026', title:'✅ Pre-approval KHDA получен. FAHU оплачен.', done:true, color:'#1D7A5F',
-   body:'Pre-approval KHDA зафиксирован · FAHU оплачен · DEWA и Sand Area в процессе · Centre Manager Approval',
-   tasks:[], amt:null},
-  {date:'Июнь 2026', title:'Commercial License + Ремонт завершён', color:'#1B4F8A',
-   body:'Получение trade license · DM и Civil Defence approvals · Начало найма · Старт маркетинга',
-   tasks:['MOA нотариально (AED 50K)','Trade license DED','DM layout approval + Civil Defence NOC','Разместить вакансии учителей и персонала','Маркетинг месяц 1 (AED 18,300)','Заказать декор и мебель (производство 10–30 дней)'],
-   amt:'AED 536K ⚠'},
-  {date:'Июль 2026', title:'KHDA Inspection + Закупки — тяжёлый месяц', color:'#B91C1C',
-   body:'On-site инспекция KHDA · Параллельно завоз всего оснащения и электроники',
-   tasks:['KHDA Building Inspection (~10 дней)','Закупка оборудования для классов (AED 224K)','Закупка электроники (AED 92K)','Монтаж декора и мебели','Найм: Job Offers и трудовые договоры','Маркетинг месяц 2 (AED 18,300)'],
-   amt:'AED 527K'},
-  {date:'Июль–Авг', title:'Final KHDA Educational Permit (~34 дня)', color:'#1B4F8A',
-   body:'Подача полного пакета документов в KHDA · Оплата AED 10,000 · Ожидание разрешения',
-   tasks:['Подача полного пакета документов','Оплата KHDA permit fee (AED 10K)','Параллельно: оформление виз (AED 91K)'],
-   amt:'AED 10K'},
-  {date:'Авг 2026', title:'Оформление персонала + Pre-Opening', color:'#6B7280',
-   body:'Визы, страховка, стажировка · Open Day для будущих родителей · Зарплата команды стартует',
-   tasks:['Визы (AED 91K)','Страховка (AED 25,942)','Онбординг (AED 25,620)','Маркетинг месяц 3 (AED 18,300)','Open Day'],
-   amt:'AED 221K'},
-  {date:'1 Сент 2026', title:'🎉 ОТКРЫТИЕ', color:'#1D7A5F', open:true,
-   body:'Первые дети · Операционный старт · Маркетинг месяц 4',
-   tasks:[], amt:null},
-];
-
-const TL_SOFT = [
-  {date:'Май 2026', title:'✅ Pre-approval KHDA получен. FAHU оплачен.', done:true, color:'#1D7A5F',
-   body:'Pre-approval KHDA зафиксирован · FAHU оплачен · DEWA и Sand Area в процессе',
-   tasks:[], amt:null},
-  {date:'Июнь–Июль', title:'Commercial License + Соответствие помещения', color:'#1B4F8A',
-   body:'С буфером 2–3 нед. · DM и Civil Defence approvals · Начало найма · Маркетинг стартует',
-   tasks:['MOA нотариально (AED 50K)','Trade license DED (с буфером)','DM и Civil Defence approvals','Разместить вакансии','Маркетинг месяц 1–2 (AED 36,600)','Заказать декор и мебель'],
-   amt:'AED 229K+'},
-  {date:'Август 2026', title:'KHDA Building Inspection', color:'#B8860B',
-   body:'On-site инспекция · Буфер на повторную проверку · Параллельно завоз оснащения',
-   tasks:['KHDA Building Inspection (+буфер 2 нед.)','Закупка оборудования и электроники (AED 317K)','Отбор и оформление персонала'],
-   amt:'AED 527K'},
-  {date:'Авг–Сент', title:'Final KHDA Educational Permit (~34+ дня)', color:'#1B4F8A',
-   body:'Подача документов · ~34 дня + буфер на запросы KHDA · Оформление виз',
-   tasks:['Подача полного пакета KHDA','Ожидание (~34+ дней)','Визы (AED 91K) · Страховка (AED 25,942)','Маркетинг продолжается: AED 18,300/мес'],
-   amt:'AED 10K'},
-  {date:'Октябрь', title:'Pre-Opening: онбординг + подготовка', color:'#6B7280',
-   body:'Стажировка команды · Open Day · Маркетинг продолжается всё время до открытия',
-   tasks:['Онбординг (AED 25,620)','Зарплата за период ожидания сент–окт (+AED 50K)','Маркетинг: AED 18,300/мес до открытия','Open Day для будущих родителей'],
-   amt:'AED ~75K доп.'},
-  {date:'1 Нояб 2026', title:'🎉 ОТКРЫТИЕ (Soft)', color:'#1D7A5F', open:true,
-   body:'Первые дети · Размеренный операционный старт',
-   tasks:[], amt:null},
-];
-
-// ---- РЕНДЕР БАРОВ ----
-function buildBars() {
-  const el = document.getElementById('bars');
-  if (!el) return;
-  const max = CATS[0].cost;
-  CATS.forEach(c => {
-    const w = Math.round(c.cost / max * 100);
-    el.innerHTML += `<div class="bar">
-      <div class="bar-top">
-        <span class="bar-name"><span class="dot" style="background:${c.color}"></span>${c.name}</span>
-        <span class="bar-amt" style="color:${c.color}">AED ${c.cost.toLocaleString('ru-RU')} <span style="color:var(--sub);font-weight:400">(${c.pct}%)</span></span>
-      </div>
-      <div class="bar-bg"><div class="bar-fill" style="width:${w}%;background:${c.color}"></div></div>
-      <div class="bar-note">${c.note}</div>
-    </div>`;
-  });
-}
-
-// ---- РЕНДЕР ТАЙМЛАЙНА ----
-function buildTL(data, id) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  el.innerHTML = '';
-  data.forEach((row, i) => {
-    const last = i === data.length - 1;
-    const cls = row.open ? ' open' : row.done ? ' done' : row.now ? ' now' : '';
-    const tasks = row.tasks.length
-      ? `<ul>${row.tasks.map(t => `<li>${t}</li>`).join('')}</ul>`
-      : '';
-    const amt = row.amt
-      ? `<div class="tl-amt" style="color:${row.color}">💰 ${row.amt}</div>`
-      : '';
-    el.innerHTML += `<div class="tl-item">
-      <div class="tl-date">${row.date}</div>
-      <div class="tl-spine">
-        <div class="tl-dot" style="border-color:${row.color};background:${(row.done||row.open)?row.color:'#fff'}"></div>
-        ${!last ? `<div class="tl-line" style="background:${row.color}28"></div>` : ''}
-      </div>
-      <div class="tl-body">
-        <div class="tl-card${cls}">
-          <h4>${row.title}</h4>
-          <p>${row.body}</p>
-          ${tasks}${amt}
-        </div>
-      </div>
-    </div>`;
-  });
-}
-
-// ---- ГРАФИК ----
-let monthChart = null;
-function buildMonthChart() {
-  if (monthChart) return;
-  const ctx = document.getElementById('chart-months');
-  if (!ctx) return;
-  const vals = [60560, 535935, 527025, 221142, 179300];
-  monthChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['Май 2026', 'Июнь 2026', 'Июль 2026', 'Август 2026', 'Сентябрь 2026'],
-      datasets: [{
-        data: vals,
-        backgroundColor: vals.map((_, i) => i === 2 ? '#1B4F8A' : 'rgba(27,79,138,0.3)'),
-        borderRadius: 5,
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
-      scales: {
-        y: { ticks: { callback: v => 'AED ' + Math.round(v/1000) + 'K', font: { size: 11 } }, grid: { color: 'rgba(0,0,0,0.05)' } },
-        x: { ticks: { font: { size: 12 } }, grid: { display: false } }
+const ctx = document.getElementById('chart').getContext('2d');
+new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: CATS.map(c => c.name),
+    datasets: [{
+      data: CATS.map(c => c.amt),
+      backgroundColor: CATS.map(c => c.color),
+      borderWidth: 2,
+      borderColor: '#0f1117',
+    }]
+  },
+  options: {
+    cutout: '65%',
+    plugins: {
+      legend: {
+        position: 'bottom',
+        labels: { color: '#8b90a0', font: { size: 11 }, padding: 10, boxWidth: 12 }
+      },
+      tooltip: {
+        callbacks: {
+          label: ctx => ' ' + ctx.parsed.toLocaleString('ru') + ' AED'
+        }
       }
     }
-  });
-}
-
-// ---- НАВИГАЦИЯ ----
-const PAGES = ['overview', 'steps', 'hard', 'soft', 'compare', 'budget'];
-
-function go(id) {
-  PAGES.forEach(p => {
-    document.getElementById('page-' + p).style.display = p === id ? 'block' : 'none';
-  });
-  document.querySelectorAll('.tab').forEach((t, i) => {
-    t.classList.toggle('active', PAGES[i] === id);
-  });
-  if (id === 'budget') buildMonthChart();
-}
-
-// ---- ИНИЦИАЛИЗАЦИЯ ----
-// Скрыть все страницы кроме первой
-PAGES.forEach(p => {
-  const el = document.getElementById('page-' + p);
-  if (el) el.style.display = p === 'overview' ? 'block' : 'none';
+  }
 });
-
-buildBars();
-buildTL(TL_HARD, 'tl-hard');
-buildTL(TL_SOFT, 'tl-soft');
 </script>
 </body>
 </html>
