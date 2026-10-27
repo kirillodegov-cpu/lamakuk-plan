@@ -3,172 +3,302 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LaMakuk Village Dubai — Операционные расходы</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<title>LaMakuk Dubai — План платежей</title>
 <style>
 :root {
-  --bg: #0f1117;
-  --card: #1a1d27;
-  --border: #2a2d3a;
-  --text: #e8eaf0;
-  --muted: #8b90a0;
-  --accent: #4f7fff;
-  --green: #22c55e;
+  --bg: #0b0e17;
+  --card: #131722;
+  --border: #252a3a;
+  --text: #e2e6f0;
+  --muted: #7a8099;
   --yellow: #f59e0b;
-  --red: #ef4444;
-  --purple: #a855f7;
+  --w1: #22c55e;
+  --w2: #f59e0b;
+  --w3: #a855f7;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 15px; line-height: 1.5; }
+body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.5; }
 
-.header { background: linear-gradient(135deg, #1e2235 0%, #0f1117 100%); border-bottom: 1px solid var(--border); padding: 28px 20px 20px; }
-.header h1 { font-size: 22px; font-weight: 700; color: #fff; }
-.header p { color: var(--muted); font-size: 13px; margin-top: 4px; }
-.badge { display: inline-block; background: #22c55e18; color: var(--green); border: 1px solid #22c55e33; border-radius: 20px; font-size: 11px; font-weight: 600; padding: 2px 10px; margin-top: 8px; }
+.header { padding: 24px 20px 16px; border-bottom: 1px solid var(--border); background: linear-gradient(135deg,#151b2e,#0b0e17); }
+.header h1 { font-size: 20px; font-weight: 700; color: #fff; }
+.header p { color: var(--muted); font-size: 12px; margin-top: 3px; }
 
-.hero { padding: 28px 20px; text-align: center; border-bottom: 1px solid var(--border); }
-.hero-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-.hero-amount { font-size: 48px; font-weight: 800; color: #fff; letter-spacing: -1px; }
-.hero-currency { font-size: 22px; color: var(--muted); font-weight: 400; }
-.hero-sub { font-size: 13px; color: var(--muted); margin-top: 8px; }
+.summary-row { display: flex; gap: 10px; padding: 16px; overflow-x: auto; border-bottom: 1px solid var(--border); }
+.sum-card { flex: 0 0 auto; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; min-width: 140px; }
+.sum-card.w1 { border-color: #22c55e44; }
+.sum-card.w2 { border-color: #f59e0b44; }
+.sum-card.w3 { border-color: #a855f744; }
+.sum-card.wx { border-color: #4f7fff44; }
+.sum-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 4px; }
+.sum-amount { font-size: 20px; font-weight: 800; color: #fff; }
+.sum-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
 
-.chart-wrap { padding: 20px; border-bottom: 1px solid var(--border); max-width: 340px; margin: 0 auto; }
+.content { max-width: 720px; margin: 0 auto; padding: 16px 14px 60px; }
 
-.content { padding: 16px 16px 40px; max-width: 700px; margin: 0 auto; }
-
-.cat-block { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
-.cat-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; cursor: pointer; user-select: none; }
-.cat-header:hover { background: #ffffff08; }
-.cat-title { font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px; }
-.cat-right { display: flex; align-items: center; gap: 12px; }
-.cat-amount { font-weight: 700; font-size: 16px; color: #fff; }
-.cat-count { font-size: 12px; color: var(--muted); background: #ffffff10; border-radius: 10px; padding: 2px 8px; }
-.arrow { color: var(--muted); font-size: 12px; transition: transform 0.2s; }
+.week-block { margin-bottom: 18px; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); }
+.week-header { padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; }
+.week-header:hover { background: #ffffff06; }
+.week-title { font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+.week-dates { font-size: 11px; color: var(--muted); font-weight: 400; margin-top: 1px; }
+.week-total { font-size: 18px; font-weight: 800; }
+.week-meta { text-align: right; }
+.week-count { font-size: 11px; color: var(--muted); }
+.arrow { color: var(--muted); font-size: 11px; margin-left: 8px; transition: transform .2s; }
 .arrow.open { transform: rotate(90deg); }
 
-.items-list { border-top: 1px solid var(--border); padding: 4px 0; }
-.item-row { display: flex; align-items: flex-start; justify-content: space-between; padding: 9px 16px; gap: 12px; }
-.item-row:not(:last-child) { border-bottom: 1px solid #1e2130; }
-.item-left { display: flex; align-items: flex-start; gap: 8px; flex: 1; min-width: 0; }
-.item-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-top: 7px; flex-shrink: 0; }
-.item-name { font-size: 13px; color: var(--text); word-break: break-word; }
-.item-status { font-size: 11px; color: var(--muted); margin-top: 2px; }
-.item-price { font-size: 14px; font-weight: 600; color: var(--yellow); white-space: nowrap; }
+.w1 .week-header { background: #22c55e0a; }
+.w2 .week-header { background: #f59e0b0a; }
+.w3 .week-header { background: #a855f70a; }
+.w1 { border-color: #22c55e33; }
+.w2 { border-color: #f59e0b33; }
+.w3 { border-color: #a855f733; }
+.w1 .week-total { color: var(--w1); }
+.w2 .week-total { color: var(--w2); }
+.w3 .week-total { color: var(--w3); }
 
-.status-badge { display: inline-block; font-size: 10px; padding: 1px 7px; border-radius: 8px; font-weight: 500; }
-.s-inprogress { background: #4f7fff22; color: #4f7fff; }
-.s-pending { background: #f59e0b22; color: #f59e0b; }
-.s-waitpay { background: #a855f722; color: #a855f7; }
-.s-onhold { background: #6b728022; color: #9ca3af; }
-.s-todo { background: #22c55e22; color: #22c55e; }
-.s-other { background: #ffffff10; color: var(--muted); }
+.items-wrap { border-top: 1px solid var(--border); }
+.phase-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .8px; padding: 8px 18px 4px; background: #ffffff04; border-bottom: 1px solid #1a1f2e; }
+.item-row { display: flex; align-items: flex-start; justify-content: space-between; padding: 8px 18px; gap: 12px; border-bottom: 1px solid #151820; }
+.item-row:last-child { border-bottom: none; }
+.item-name { font-size: 13px; color: var(--text); flex: 1; }
+.item-date { font-size: 11px; color: var(--muted); margin-top: 1px; }
+.item-right { text-align: right; flex-shrink: 0; }
+.item-price { font-size: 14px; font-weight: 600; color: var(--yellow); white-space: nowrap; }
+.item-status { font-size: 10px; margin-top: 2px; }
+
+.sbadge { display: inline-block; padding: 1px 6px; border-radius: 6px; font-weight: 500; }
+.s-ip  { background:#4f7fff1a; color:#4f7fff; }
+.s-wp  { background:#a855f71a; color:#a855f7; }
+.s-pnd { background:#f59e0b1a; color:#f59e0b; }
+.s-oh  { background:#6b72801a; color:#9ca3af; }
+.s-    { background:#ffffff0d; color:#8b90a0; }
 </style>
 </head>
 <body>
 
 <div class="header">
   <h1>🏗 LaMakuk Village Dubai</h1>
-  <p>Операционные расходы до открытия</p>
-  <span class="badge">Обновлено 12 октября 2026</span>
+  <p>План платежей · обновлено 27 октября 2026</p>
 </div>
 
-<div class="hero">
-  <div class="hero-label">Осталось оплатить</div>
-  <div class="hero-amount">247<span style="color:#4a5568">,</span>968 <span class="hero-currency">AED</span></div>
-  <div class="hero-sub">4 категории · 31 позиция</div>
-</div>
-
-<div class="chart-wrap">
-  <canvas id="chart" height="280"></canvas>
+<div class="summary-row">
+  <div class="sum-card w1">
+    <div class="sum-label">🟢 Неделя 1</div>
+    <div class="sum-amount">118 041</div>
+    <div class="sum-sub">26 окт – 1 нояб · 13 позиций</div>
+  </div>
+  <div class="sum-card w2">
+    <div class="sum-label">🟡 Неделя 2</div>
+    <div class="sum-amount">80 695</div>
+    <div class="sum-sub">2 – 8 нояб · 14 позиций</div>
+  </div>
+  <div class="sum-card w3">
+    <div class="sum-label">🟣 Неделя 3</div>
+    <div class="sum-amount">29 604</div>
+    <div class="sum-sub">9 – 15 нояб · 3 позиции</div>
+  </div>
+  <div class="sum-card wx">
+    <div class="sum-label">⬜ Итого</div>
+    <div class="sum-amount">228 340</div>
+    <div class="sum-sub">AED</div>
+  </div>
 </div>
 
 <div class="content">
 
-<!-- Classroom equipment -->
-<div class="cat-block">
-  <div class="cat-header" onclick="toggle('cls')">
-    <div class="cat-title"><span>📚</span> Оснащение классов</div>
-    <div class="cat-right">
-      <span class="cat-amount">73 623 AED</span>
-      <span class="cat-count">8</span>
-      <span class="arrow" id="arrow-cls">▶</span>
+<!-- WEEK 1 -->
+<div class="week-block w1">
+  <div class="week-header" onclick="toggle('w1')">
+    <div>
+      <div class="week-title"><span>🟢</span> Неделя 1<span class="arrow" id="arrow-w1">▶</span></div>
+      <div class="week-dates">26 октября – 1 ноября</div>
+    </div>
+    <div class="week-meta">
+      <div class="week-total">118 041 AED</div>
+      <div class="week-count">13 позиций</div>
     </div>
   </div>
-  <div class="items-list" id="items-cls" style="display:none">
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Купить постельное белье для кроваток, горшки</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">25 800</div></div>
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Форма для персонала</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">17 000</div></div>
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Форма для детей</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">10 823</div></div>
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Стулья для родителей раскладные</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">5 000</div></div>
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Таблички на двери, папки для договоров, стикеры на шкафчики</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">5 000</div></div>
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Пакеты и рекламные материалы</div><div class="item-status"><span class="status-badge s-waitpay">Waiting Pay</span></div></div></div><div class="item-price">5 000</div></div>
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Маркерные доски, пробковые доски</div><div class="item-status"><span class="status-badge s-onhold">On Hold</span></div></div></div><div class="item-price">5 000</div></div>
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Форма для детей (доп)</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">—</div></div>
+  <div class="items-wrap" id="items-w1" style="display:none">
+
+    <div class="phase-label">📋 KHDA Licensing</div>
+    <div class="item-row">
+      <div><div class="item-name">Final KHDA Educational Permit</div><div class="item-date">27 окт</div></div>
+      <div class="item-right"><div class="item-price">25 000</div><div class="item-status"><span class="sbadge s-oh">On Hold</span></div></div>
+    </div>
+
+    <div class="phase-label">🎓 Оснащение классов</div>
+    <div class="item-row">
+      <div><div class="item-name">Постельное бельё для кроваток, горшки</div><div class="item-date">27 окт</div></div>
+      <div class="item-right"><div class="item-price">25 800</div><div class="item-status"><span class="sbadge s-ip">In Progress</span></div></div>
+    </div>
+    <div class="item-row">
+      <div><div class="item-name">Форма для персонала</div><div class="item-date">27 окт</div></div>
+      <div class="item-right"><div class="item-price">17 000</div><div class="item-status"><span class="sbadge s-ip">In Progress</span></div></div>
+    </div>
+    <div class="item-row">
+      <div><div class="item-name">Форма для детей</div><div class="item-date">27 окт</div></div>
+      <div class="item-right"><div class="item-price">10 823</div><div class="item-status"><span class="sbadge s-ip">In Progress</span></div></div>
+    </div>
+    <div class="item-row">
+      <div><div class="item-name">Канцтовары</div><div class="item-date">27 окт</div></div>
+      <div class="item-right"><div class="item-price">5 000</div><div class="item-status"><span class="sbadge s-ip">In Progress</span></div></div>
+    </div>
+    <div class="item-row">
+      <div><div class="item-name">Welcome pack</div><div class="item-date">27 окт</div></div>
+      <div class="item-right"><div class="item-price">5 000</div><div class="item-status"><span class="sbadge s-">—</span></div></div>
+    </div>
+    <div class="item-row">
+      <div><div class="item-name">Пакеты и рекламные материалы</div><div class="item-date">27 окт</div></div>
+      <div class="item-right"><div class="item-price">5 000</div><div class="item-status"><span class="sbadge s-wp">Waiting Pay</span></div></div>
+    </div>
+    <div class="item-row">
+      <div><div class="item-name">Таблички на двери доплата</div><div class="item-date">27 окт</div></div>
+      <div class="item-right"><div class="item-price">600</div><div class="item-status"><span class="sbadge s-ip">In Progress</span></div></div>
+    </div>
+
+    <div class="phase-label">🎨 Декор и отделка</div>
+    <div class="item-row">
+      <div><div class="item-name">Вывеска на вход + мальчик + зеркало</div><div class="item-date">27 окт</div></div>
+      <div class="item-right"><div class="item-price">15 400</div><div class="item-status"><span class="sbadge s-ip">In Progress</span></div></div>
+    </div>
+
+    <div class="phase-label">💻 Электроника</div>
+    <div class="item-row">
+      <div><div class="item-name">TV</div><div class="item-date">27 окт</div></div>
+      <div class="item-right"><div class="item-price">5 000</div><div class="item-status"><span class="sbadge s-ip">In Progress</span></div></div>
+    </div>
+    <div class="item-row">
+      <div><div class="item-name">Термометры и измерители влажности</div><div class="item-date">27 окт</div></div>
+      <div class="item-right"><div class="item-price">1 000</div><div class="item-status"><span class="sbadge s-">—</span></div></div>
+    </div>
+    <div class="item-row">
+      <div><div class="item-name">Микроволновка</div><div class="item-date">27 окт</div></div>
+      <div class="item-right"><div class="item-price">1 000</div><div class="item-status"><span class="sbadge s-ip">In Progress</span></div></div>
+    </div>
+
+    <div class="phase-label">🔧 Ремонтные работы</div>
+    <div class="item-row">
+      <div><div class="item-name">Наклейки на пол</div><div class="item-date">27 окт</div></div>
+      <div class="item-right"><div class="item-price">1 418</div><div class="item-status"><span class="sbadge s-ip">In Progress</span></div></div>
+    </div>
+
+
   </div>
 </div>
 
-<!-- Decorative finishing -->
-<div class="cat-block">
-  <div class="cat-header" onclick="toggle('dec')">
-    <div class="cat-title"><span>🎨</span> Декор и отделка</div>
-    <div class="cat-right">
-      <span class="cat-amount">73 545 AED</span>
-      <span class="cat-count">8</span>
-      <span class="arrow" id="arrow-dec">▶</span>
+<!-- WEEK 2 -->
+<div class="week-block w2">
+  <div class="week-header" onclick="toggle('w2')">
+    <div>
+      <div class="week-title"><span>🟡</span> Неделя 2<span class="arrow" id="arrow-w2">▶</span></div>
+      <div class="week-dates">2 – 8 ноября</div>
+    </div>
+    <div class="week-meta">
+      <div class="week-total">80 695 AED</div>
+      <div class="week-count">14 позиций</div>
     </div>
   </div>
-  <div class="items-list" id="items-dec" style="display:none">
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Декор детский</div><div class="item-status"><span class="status-badge s-pending">Pending</span></div></div></div><div class="item-price">27 000</div></div>
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Вывеска на вход + мальчик + зеркало</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">15 400</div></div>
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Внешний декор здания и цветы</div><div class="item-status"><span class="status-badge s-pending">Pending</span></div></div></div><div class="item-price">10 000</div></div>
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Стеллажи в склад</div><div class="item-status"><span class="status-badge s-pending">Pending</span></div></div></div><div class="item-price">6 000</div></div>
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Изготовление ресепшена</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">5 145</div></div>
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Мебель в комнату для персонала</div><div class="item-status"><span class="status-badge s-pending">Pending</span></div></div></div><div class="item-price">5 000</div></div>
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Оснастить кухню (раздача еды)</div><div class="item-status"><span class="status-badge s-pending">Pending</span></div></div></div><div class="item-price">3 000</div></div>
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Оборудовать медицинский кабинет</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">2 000</div></div>
+  <div class="items-wrap" id="items-w2" style="display:none">
+
+    <div class="phase-label">🎨 Декор и отделка</div>
+    <div class="item-row">
+      <div><div class="item-name">Декор детский</div><div class="item-date">2 нояб</div></div>
+      <div class="item-right"><div class="item-price">27 000</div><div class="item-status"><span class="sbadge s-pnd">Pending</span></div></div>
+    </div>
+    <div class="item-row">
+      <div><div class="item-name">Внешний декор здания и цветы</div><div class="item-date">2 нояб</div></div>
+      <div class="item-right"><div class="item-price">10 000</div><div class="item-status"><span class="sbadge s-pnd">Pending</span></div></div>
+    </div>
+    <div class="item-row">
+      <div><div class="item-name">Изготовление ресепшена</div><div class="item-date">2 нояб</div></div>
+      <div class="item-right"><div class="item-price">5 145</div><div class="item-status"><span class="sbadge s-ip">In Progress</span></div></div>
+    </div>
+    <div class="item-row">
+      <div><div class="item-name">Оснастить кухню (раздача еды)</div><div class="item-date">2 нояб</div></div>
+      <div class="item-right"><div class="item-price">3 000</div><div class="item-status"><span class="sbadge s-pnd">Pending</span></div></div>
+    </div>
+
+    <div class="phase-label">💻 Электроника</div>
+    <div class="item-row">
+      <div><div class="item-name">Интерактивные доски</div><div class="item-date">2 нояб</div></div>
+      <div class="item-right"><div class="item-price">21 600</div><div class="item-status"><span class="sbadge s-ip">In Progress</span></div></div>
+    </div>
+    <div class="item-row">
+      <div><div class="item-name">Инвентарь для садовника / инструменты</div><div class="item-date">2 нояб</div></div>
+      <div class="item-right"><div class="item-price">500</div><div class="item-status"><span class="sbadge s-ip">In Progress</span></div></div>
+    </div>
+    <div class="item-row">
+      <div><div class="item-name">Холодильник медкабинет</div><div class="item-date">2 нояб</div></div>
+      <div class="item-right"><div class="item-price">800</div><div class="item-status"><span class="sbadge s-ip">In Progress</span></div></div>
+    </div>
+    <div class="item-row">
+      <div><div class="item-name">Весы кухонные и напольные</div><div class="item-date">2 нояб</div></div>
+      <div class="item-right"><div class="item-price">550</div><div class="item-status"><span class="sbadge s-ip">In Progress</span></div></div>
+    </div>
+    <div class="item-row">
+      <div><div class="item-name">Ламинаторы, байндер</div><div class="item-date">2 нояб</div></div>
+      <div class="item-right"><div class="item-price">500</div><div class="item-status"><span class="sbadge s-ip">In Progress</span></div></div>
+    </div>
+
+    <div class="phase-label">🔧 Ремонтные работы</div>
+    <div class="item-row">
+      <div><div class="item-name">Парковка внешняя</div><div class="item-date">2 нояб</div></div>
+      <div class="item-right"><div class="item-price">3 000</div><div class="item-status"><span class="sbadge s-pnd">Pending</span></div></div>
+    </div>
+    <div class="item-row">
+      <div><div class="item-name">Парковка зелёная зона</div><div class="item-date">2 нояб</div></div>
+      <div class="item-right"><div class="item-price">3 000</div><div class="item-status"><span class="sbadge s-pnd">Pending</span></div></div>
+    </div>
+    <div class="item-row">
+      <div><div class="item-name">Купить зелёных растений в клумбы</div><div class="item-date">2 нояб</div></div>
+      <div class="item-right"><div class="item-price">3 000</div><div class="item-status"><span class="sbadge s-pnd">Pending</span></div></div>
+    </div>
+
+    <div class="phase-label">🏥 Медкабинет</div>
+    <div class="item-row">
+      <div><div class="item-name">Оборудовать медкабинет</div><div class="item-date">2 нояб</div></div>
+      <div class="item-right"><div class="item-price">2 000</div><div class="item-status"><span class="sbadge s-ip">In Progress</span></div></div>
+    </div>
+
+    <div class="phase-label">🗑 Прочее</div>
+    <div class="item-row">
+      <div><div class="item-name">Мусорные вёдра</div><div class="item-date">2 нояб</div></div>
+      <div class="item-right"><div class="item-price">600</div><div class="item-status"><span class="sbadge s-">—</span></div></div>
+    </div>
+
   </div>
 </div>
 
-<!-- Repair works -->
-<div class="cat-block">
-  <div class="cat-header" onclick="toggle('rep')">
-    <div class="cat-title"><span>🔧</span> Ремонтные работы</div>
-    <div class="cat-right">
-      <span class="cat-amount">58 850 AED</span>
-      <span class="cat-count">8</span>
-      <span class="arrow" id="arrow-rep">▶</span>
+<!-- WEEK 3 -->
+<div class="week-block w3">
+  <div class="week-header" onclick="toggle('w3')">
+    <div>
+      <div class="week-title"><span>🟣</span> Неделя 3<span class="arrow" id="arrow-w3">▶</span></div>
+      <div class="week-dates">9 – 15 ноября</div>
+    </div>
+    <div class="week-meta">
+      <div class="week-total">29 604 AED</div>
+      <div class="week-count">3 позиции</div>
     </div>
   </div>
-  <div class="items-list" id="items-rep" style="display:none">
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Заборы возле площадок</div><div class="item-status"><span class="status-badge s-pending">Pending</span></div></div></div><div class="item-price">40 000</div></div>
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Оплата пожарной безопасности на год</div><div class="item-status"><span class="status-badge s-waitpay">Waiting Pay</span></div></div></div><div class="item-price">4 200</div></div>
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Установка пожарной системы 24/7</div><div class="item-status"><span class="status-badge s-waitpay">Waiting Pay</span></div></div></div><div class="item-price">3 150</div></div>
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Парковка внешняя</div><div class="item-status"><span class="status-badge s-pending">Pending</span></div></div></div><div class="item-price">3 000</div></div>
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Наклейки на пол</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">3 000</div></div>
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Зеленые растения в клумбы</div><div class="item-status"><span class="status-badge s-pending">Pending</span></div></div></div><div class="item-price">3 000</div></div>
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Резиновые коврики</div><div class="item-status"><span class="status-badge s-pending">Pending</span></div></div></div><div class="item-price">1 500</div></div>
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Сундук для игрушек покрасить</div><div class="item-status"><span class="status-badge s-pending">Pending</span></div></div></div><div class="item-price">1 000</div></div>
-  </div>
-</div>
+  <div class="items-wrap" id="items-w3" style="display:none">
 
-<!-- Electronic equipment -->
-<div class="cat-block">
-  <div class="cat-header" onclick="toggle('elec')">
-    <div class="cat-title"><span>💻</span> Электроника</div>
-    <div class="cat-right">
-      <span class="cat-amount">41 950 AED</span>
-      <span class="cat-count">8</span>
-      <span class="arrow" id="arrow-elec">▶</span>
+    <div class="phase-label">🎨 Декор и отделка</div>
+    <div class="item-row">
+      <div><div class="item-name">Мебель в комнату для персонала</div><div class="item-date">9 нояб</div></div>
+      <div class="item-right"><div class="item-price">5 000</div><div class="item-status"><span class="sbadge s-pnd">Pending</span></div></div>
     </div>
-  </div>
-  <div class="items-list" id="items-elec" style="display:none">
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Интерактивные доски</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">21 600</div></div>
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Бактерицидный рециркулятор</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">9 500</div></div>
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">TV</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">5 000</div></div>
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Инвентарь для садовника, инструменты для мелкого ремонта</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">3 000</div></div>
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Микроволновка</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">1 000</div></div>
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Холодильник медицинский кабинет</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">800</div></div>
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Весы кухонные и напольные</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">550</div></div>
-    <div class="item-row"><div class="item-left"><div class="item-dot"></div><div><div class="item-name">Ламинаторы, биндер</div><div class="item-status"><span class="status-badge s-inprogress">In Progress</span></div></div></div><div class="item-price">500</div></div>
+    <div class="item-row">
+      <div><div class="item-name">Стеллажи на склад</div><div class="item-date">9 нояб</div></div>
+      <div class="item-right"><div class="item-price">6 000</div><div class="item-status"><span class="sbadge s-pnd">Pending</span></div></div>
+    </div>
+
+    <div class="phase-label">🔧 Ремонтные работы</div>
+    <div class="item-row">
+      <div><div class="item-name">Заборы возле площадок</div><div class="item-date">9 нояб</div></div>
+      <div class="item-right"><div class="item-price">18 604</div><div class="item-status"><span class="sbadge s-pnd">Pending</span></div></div>
+    </div>
+
   </div>
 </div>
 
@@ -176,47 +306,12 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
 
 <script>
 function toggle(id) {
-  const items = document.getElementById('items-' + id);
-  const arrow = document.getElementById('arrow-' + id);
-  const open = items.style.display !== 'none';
-  items.style.display = open ? 'none' : 'block';
-  arrow.classList.toggle('open', !open);
+  const el = document.getElementById('items-' + id);
+  const ar = document.getElementById('arrow-' + id);
+  const open = el.style.display !== 'none';
+  el.style.display = open ? 'none' : 'block';
+  ar.classList.toggle('open', !open);
 }
-
-const CATS = [
-  {name:'Оснащение классов', amt:73623, color:'#1D7A5F'},
-  {name:'Декор и отделка', amt:73545, color:'#7F77DD'},
-  {name:'Ремонтные работы', amt:58850, color:'#1B4F8A'},
-  {name:'Электроника', amt:41950, color:'#3266ad'},
-];
-
-const ctx = document.getElementById('chart').getContext('2d');
-new Chart(ctx, {
-  type: 'doughnut',
-  data: {
-    labels: CATS.map(c => c.name),
-    datasets: [{
-      data: CATS.map(c => c.amt),
-      backgroundColor: CATS.map(c => c.color),
-      borderWidth: 2,
-      borderColor: '#0f1117',
-    }]
-  },
-  options: {
-    cutout: '65%',
-    plugins: {
-      legend: {
-        position: 'bottom',
-        labels: { color: '#8b90a0', font: { size: 11 }, padding: 10, boxWidth: 12 }
-      },
-      tooltip: {
-        callbacks: {
-          label: ctx => ' ' + ctx.parsed.toLocaleString('ru') + ' AED'
-        }
-      }
-    }
-  }
-});
 </script>
 </body>
 </html>
