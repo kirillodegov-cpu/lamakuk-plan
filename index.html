@@ -44,6 +44,12 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
 .s-oh  { background:#6b72801a; color:#9ca3af; }
 .s-    { background:#ffffff0d; color:#8b90a0; }
 
+.pay-badge { display: inline-block; padding: 1px 7px; border-radius: 6px; font-size: 10px; font-weight: 600; margin-left: 4px; }
+.pay-account { background:#22c55e1a; color:#22c55e; }
+.pay-cash    { background:#f59e0b1a; color:#f59e0b; }
+.pay-card    { background:#f59e0b1a; color:#f59e0b; }
+.pay-crypto  { background:#a855f71a; color:#a855f7; }
+
 .phase-total { font-size: 11px; color: var(--muted); float: right; }
 </style>
 </head>
@@ -70,19 +76,19 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
     <div class="phase-header">🎓 Оснащение классов <span class="phase-total">19 111 AED</span></div>
     <div class="item-row">
       <div class="item-name">Постельное бельё для кроваток, горшки</div>
-      <div class="item-right"><div class="item-price">12 911</div><div class="item-status"><span class="sbadge s-ip">In Progress</span></div></div>
+      <div class="item-right"><div class="item-price">12 911</div><div class="item-status"><span class="sbadge s-ip">In Progress</span> <span class="pay-badge pay-account">💳 Счёт</span></div></div>
     </div>
     <div class="item-row">
       <div class="item-name">Канцтовары</div>
-      <div class="item-right"><div class="item-price">5 000</div><div class="item-status"><span class="sbadge s-ip">In Progress</span></div></div>
+      <div class="item-right"><div class="item-price">5 000</div><div class="item-status"><span class="sbadge s-ip">In Progress</span> <span class="pay-badge pay-account">💳 Счёт</span></div></div>
     </div>
     <div class="item-row">
       <div class="item-name">Таблички на двери доплата</div>
-      <div class="item-right"><div class="item-price">600</div><div class="item-status"><span class="sbadge s-ip">In Progress</span></div></div>
+      <div class="item-right"><div class="item-price">600</div><div class="item-status"><span class="sbadge s-ip">In Progress</span> <span class="pay-badge pay-account">💳 Счёт</span></div></div>
     </div>
     <div class="item-row">
       <div class="item-name">Мусорные вёдра</div>
-      <div class="item-right"><div class="item-price">600</div><div class="item-status"><span class="sbadge s-">—</span></div></div>
+      <div class="item-right"><div class="item-price">600</div><div class="item-status"><span class="sbadge s-">—</span> <span class="pay-badge pay-cash">💵 Наличные</span></div></div>
     </div>
   </div>
 
@@ -90,23 +96,23 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
     <div class="phase-header">💻 Электроника <span class="phase-total">29 450 AED</span></div>
     <div class="item-row">
       <div class="item-name">Интерактивные доски</div>
-      <div class="item-right"><div class="item-price">21 600</div><div class="item-status"><span class="sbadge s-ip">In Progress</span></div></div>
+      <div class="item-right"><div class="item-price">21 600</div><div class="item-status"><span class="sbadge s-ip">In Progress</span> <span class="pay-badge pay-account">💳 Счёт</span></div></div>
     </div>
     <div class="item-row">
       <div class="item-name">TV</div>
-      <div class="item-right"><div class="item-price">5 000</div><div class="item-status"><span class="sbadge s-ip">In Progress</span></div></div>
+      <div class="item-right"><div class="item-price">5 000</div><div class="item-status"><span class="sbadge s-ip">In Progress</span> <span class="pay-badge pay-cash">💵 Нал/карта</span></div></div>
     </div>
     <div class="item-row">
       <div class="item-name">Микроволновка</div>
-      <div class="item-right"><div class="item-price">1 000</div><div class="item-status"><span class="sbadge s-ip">In Progress</span></div></div>
+      <div class="item-right"><div class="item-price">1 000</div><div class="item-status"><span class="sbadge s-ip">In Progress</span> <span class="pay-badge pay-cash">💵 Нал/карта</span></div></div>
     </div>
     <div class="item-row">
       <div class="item-name">Термометры и измерители влажности</div>
-      <div class="item-right"><div class="item-price">1 000</div><div class="item-status"><span class="sbadge s-">—</span></div></div>
+      <div class="item-right"><div class="item-price">1 000</div><div class="item-status"><span class="sbadge s-">—</span> <span class="pay-badge pay-account">💳 Счёт</span></div></div>
     </div>
     <div class="item-row">
       <div class="item-name">Весы кухонные и напольные</div>
-      <div class="item-right"><div class="item-price">550</div><div class="item-status"><span class="sbadge s-ip">In Progress</span></div></div>
+      <div class="item-right"><div class="item-price">550</div><div class="item-status"><span class="sbadge s-ip">In Progress</span> <span class="pay-badge pay-cash">💵 Нал/карта</span></div></div>
     </div>
     <div class="item-row">
       <div class="item-name">Холодильник медкабинет</div>
@@ -114,11 +120,11 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
     </div>
     <div class="item-row">
       <div class="item-name">Инвентарь для садовника / инструменты</div>
-      <div class="item-right"><div class="item-price">500</div><div class="item-status"><span class="sbadge s-ip">In Progress</span></div></div>
+      <div class="item-right"><div class="item-price">500</div><div class="item-status"><span class="sbadge s-ip">In Progress</span> <span class="pay-badge pay-cash">💵 Нал/карта</span></div></div>
     </div>
     <div class="item-row">
       <div class="item-name">Ламинаторы, байндер</div>
-      <div class="item-right"><div class="item-price">500</div><div class="item-status"><span class="sbadge s-ip">In Progress</span></div></div>
+      <div class="item-right"><div class="item-price">500</div><div class="item-status"><span class="sbadge s-ip">In Progress</span> <span class="pay-badge pay-account">💳 Счёт</span></div></div>
     </div>
   </div>
 
@@ -126,11 +132,11 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
     <div class="phase-header">🎨 Декор и отделка <span class="phase-total">3 000 AED</span></div>
     <div class="item-row">
       <div class="item-name">Оборудовать медкабинет</div>
-      <div class="item-right"><div class="item-price">2 000</div><div class="item-status"><span class="sbadge s-ip">In Progress</span></div></div>
+      <div class="item-right"><div class="item-price">2 000</div><div class="item-status"><span class="sbadge s-ip">In Progress</span> <span class="pay-badge pay-cash">💵 Нал/карта</span></div></div>
     </div>
     <div class="item-row">
       <div class="item-name">Оснастить кухню (раздача еды)</div>
-      <div class="item-right"><div class="item-price">1 000</div><div class="item-status"><span class="sbadge s-pnd">Pending</span></div></div>
+      <div class="item-right"><div class="item-price">1 000</div><div class="item-status"><span class="sbadge s-pnd">Pending</span> <span class="pay-badge pay-cash">💵 Нал/карта</span></div></div>
     </div>
   </div>
 
@@ -138,7 +144,7 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
     <div class="phase-header">🔧 Ремонтные работы <span class="phase-total">5 000 AED</span></div>
     <div class="item-row">
       <div class="item-name">Докупить зелёных растений в песочницу + зелёная зона</div>
-      <div class="item-right"><div class="item-price">5 000</div><div class="item-status"><span class="sbadge s-pnd">Pending</span></div></div>
+      <div class="item-right"><div class="item-price">5 000</div><div class="item-status"><span class="sbadge s-pnd">Pending</span> <span class="pay-badge pay-cash">💵 Наличные</span></div></div>
     </div>
   </div>
 
@@ -146,23 +152,23 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
     <div class="phase-header">🚀 Предзапуск <span class="phase-total">26 109 AED</span></div>
     <div class="item-row">
       <div class="item-name">Amazon для деятельности + фемели дей</div>
-      <div class="item-right"><div class="item-price">3 241</div><div class="item-status"><span class="sbadge s-pnd">Pending</span></div></div>
+      <div class="item-right"><div class="item-price">3 241</div><div class="item-status"><span class="sbadge s-pnd">Pending</span> <span class="pay-badge pay-cash">💵 Наличные</span></div></div>
     </div>
     <div class="item-row">
       <div class="item-name">Кейтеринг фемели дей</div>
-      <div class="item-right"><div class="item-price">2 100</div><div class="item-status"><span class="sbadge s-pnd">Pending</span></div></div>
+      <div class="item-right"><div class="item-price">2 100</div><div class="item-status"><span class="sbadge s-pnd">Pending</span> <span class="pay-badge pay-account">💳 Счёт</span></div></div>
     </div>
     <div class="item-row">
       <div class="item-name">Чистка кондиционеров</div>
-      <div class="item-right"><div class="item-price">4 158</div><div class="item-status"><span class="sbadge s-pnd">Pending</span></div></div>
+      <div class="item-right"><div class="item-price">4 158</div><div class="item-status"><span class="sbadge s-pnd">Pending</span> <span class="pay-badge pay-account">💳 Счёт</span></div></div>
     </div>
     <div class="item-row">
       <div class="item-name">Маркетинг (креативная команда), предоплата</div>
-      <div class="item-right"><div class="item-price">11 110</div><div class="item-status"><span class="sbadge s-pnd">Pending</span></div></div>
+      <div class="item-right"><div class="item-price">11 110</div><div class="item-status"><span class="sbadge s-pnd">Pending</span> <span class="pay-badge pay-crypto">₿ Крипта</span></div></div>
     </div>
     <div class="item-row">
       <div class="item-name">ЗП маркетинг</div>
-      <div class="item-right"><div class="item-price">5 500</div><div class="item-status"><span class="sbadge s-pnd">Pending</span></div></div>
+      <div class="item-right"><div class="item-price">5 500</div><div class="item-status"><span class="sbadge s-pnd">Pending</span> <span class="pay-badge pay-crypto">₿ Крипта</span></div></div>
     </div>
   </div>
 
