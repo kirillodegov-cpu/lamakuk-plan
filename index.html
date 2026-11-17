@@ -44,6 +44,16 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
 .s-oh  { background:#6b72801a; color:#9ca3af; }
 .s-    { background:#ffffff0d; color:#8b90a0; }
 
+.pay-summary { display: flex; gap: 10px; padding: 0 16px 16px; overflow-x: auto; }
+.pay-sum-item { flex: 1; min-width: 90px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; }
+.pay-sum-label { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+.pay-sum-amount { font-size: 18px; font-weight: 800; }
+.pay-sum-amount.account { color: #22c55e; }
+.pay-sum-amount.cash    { color: #f59e0b; }
+.pay-sum-amount.crypto  { color: #a855f7; }
+.pay-sum-amount.muted   { color: var(--muted); }
+.pay-sum-sub { font-size: 10px; color: var(--muted); }
+
 .pay-badge { display: inline-block; padding: 1px 7px; border-radius: 6px; font-size: 10px; font-weight: 600; margin-left: 4px; }
 .pay-account { background:#22c55e1a; color:#22c55e; }
 .pay-cash    { background:#f59e0b1a; color:#f59e0b; }
@@ -67,6 +77,29 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
   </div>
   <div style="text-align:right">
     <div class="total-amount">84 170 AED</div>
+  </div>
+</div>
+
+<div class="pay-summary">
+  <div class="pay-sum-item">
+    <div class="pay-sum-label">💳 Счёт</div>
+    <div class="pay-sum-amount account">47 969</div>
+    <div class="pay-sum-sub">AED</div>
+  </div>
+  <div class="pay-sum-item">
+    <div class="pay-sum-label">💵 Наличные</div>
+    <div class="pay-sum-amount cash">20 491</div>
+    <div class="pay-sum-sub">AED</div>
+  </div>
+  <div class="pay-sum-item">
+    <div class="pay-sum-label">₿ Крипта</div>
+    <div class="pay-sum-amount crypto">16 610</div>
+    <div class="pay-sum-sub">AED</div>
+  </div>
+  <div class="pay-sum-item">
+    <div class="pay-sum-label">❓ Без формы</div>
+    <div class="pay-sum-amount muted">800</div>
+    <div class="pay-sum-sub">AED</div>
   </div>
 </div>
 
