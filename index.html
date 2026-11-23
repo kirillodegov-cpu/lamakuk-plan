@@ -28,21 +28,19 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
 
 .content { max-width: 720px; margin: 0 auto; padding: 0 14px 60px; }
 
-.phase-block { margin-bottom: 14px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
-.phase-header { padding: 10px 16px; background: #ffffff06; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .8px; border-bottom: 1px solid var(--border); }
+.week-block { margin-bottom: 20px; }
+.week-header { padding: 10px 0 8px; display: flex; align-items: baseline; gap: 10px; border-bottom: 2px solid var(--border); margin-bottom: 2px; }
+.week-title { font-size: 15px; font-weight: 700; color: #fff; }
+.week-dates { font-size: 11px; color: var(--muted); }
+.week-total-badges { margin-left: auto; display: flex; gap: 6px; align-items: center; }
+
+.phase-block { margin-top: 2px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 6px; }
 .item-row { display: flex; align-items: flex-start; justify-content: space-between; padding: 10px 16px; gap: 12px; border-bottom: 1px solid #151820; }
 .item-row:last-child { border-bottom: none; }
 .item-name { font-size: 13px; color: var(--text); flex: 1; }
 .item-right { text-align: right; flex-shrink: 0; }
 .item-price { font-size: 15px; font-weight: 700; color: var(--yellow); white-space: nowrap; }
-.item-status { font-size: 10px; margin-top: 2px; }
-
-.sbadge { display: inline-block; padding: 1px 6px; border-radius: 6px; font-weight: 500; }
-.s-ip  { background:#4f7fff1a; color:#4f7fff; }
-.s-wp  { background:#a855f71a; color:#a855f7; }
-.s-pnd { background:#f59e0b1a; color:#f59e0b; }
-.s-oh  { background:#6b72801a; color:#9ca3af; }
-.s-    { background:#ffffff0d; color:#8b90a0; }
+.item-meta { font-size: 10px; margin-top: 2px; }
 
 .pay-summary { display: flex; gap: 10px; padding: 0 16px 16px; overflow-x: auto; }
 .pay-sum-item { flex: 1; min-width: 90px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; }
@@ -51,44 +49,47 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
 .pay-sum-amount.account { color: #22c55e; }
 .pay-sum-amount.cash    { color: #f59e0b; }
 .pay-sum-amount.crypto  { color: #a855f7; }
-.pay-sum-amount.muted   { color: var(--muted); }
 .pay-sum-sub { font-size: 10px; color: var(--muted); }
 
-.pay-badge { display: inline-block; padding: 1px 7px; border-radius: 6px; font-size: 10px; font-weight: 600; margin-left: 4px; }
+.pay-badge { display: inline-block; padding: 1px 7px; border-radius: 6px; font-size: 10px; font-weight: 600; }
 .pay-account { background:#22c55e1a; color:#22c55e; }
 .pay-cash    { background:#f59e0b1a; color:#f59e0b; }
-.pay-card    { background:#f59e0b1a; color:#f59e0b; }
 .pay-crypto  { background:#a855f71a; color:#a855f7; }
 
-.phase-total { font-size: 11px; color: var(--muted); float: right; }
+.wk-badge { display: inline-block; padding: 1px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; }
+.wk-cash    { background:#f59e0b22; color:#f59e0b; }
+.wk-account { background:#22c55e22; color:#22c55e; }
+.wk-crypto  { background:#a855f722; color:#a855f7; }
+
+.overdue-label { font-size: 11px; color: #ef4444; font-weight: 600; }
 </style>
 </head>
 <body>
 
 <div class="header">
   <h1>🏗 LaMakuk Village Dubai</h1>
-  <p>Остаток платежей · обновлено 17 ноября 2026</p>
+  <p>Остаток платежей · обновлено 23 ноября 2026</p>
 </div>
 
 <div class="total-card">
   <div>
     <div class="total-label">Итого к оплате</div>
-    <div class="total-sub">19 позиций</div>
+    <div class="total-sub">24 позиции</div>
   </div>
   <div style="text-align:right">
-    <div class="total-amount">83 570 AED</div>
+    <div class="total-amount">96 580 AED</div>
   </div>
 </div>
 
 <div class="pay-summary">
   <div class="pay-sum-item">
     <div class="pay-sum-label">💳 Счёт</div>
-    <div class="pay-sum-amount account">46 269</div>
+    <div class="pay-sum-amount account">45 945</div>
     <div class="pay-sum-sub">AED</div>
   </div>
   <div class="pay-sum-item">
     <div class="pay-sum-label">💵 Наличные</div>
-    <div class="pay-sum-amount cash">20 691</div>
+    <div class="pay-sum-amount cash">34 025</div>
     <div class="pay-sum-sub">AED</div>
   </div>
   <div class="pay-sum-item">
@@ -100,100 +101,155 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
 
 <div class="content">
 
-  <div class="phase-block">
-    <div class="phase-header">🎓 Оснащение классов <span class="phase-total">19 111 AED</span></div>
-    <div class="item-row">
-      <div class="item-name">Постельное бельё для кроваток, горшки</div>
-      <div class="item-right"><div class="item-price">12 911</div><div class="item-status"><span class="sbadge s-ip">In Progress</span> <span class="pay-badge pay-account">💳 Счёт</span></div></div>
+  <!-- ===== ПРОСРОЧЕНО ===== -->
+  <div class="week-block">
+    <div class="week-header">
+      <span class="week-title">⚠️ Просрочено</span>
+      <span class="week-dates">до 2 ноября</span>
+      <div class="week-total-badges">
+        <span class="wk-cash">💵 6 850</span>
+      </div>
     </div>
-    <div class="item-row">
-      <div class="item-name">Канцтовары</div>
-      <div class="item-right"><div class="item-price">5 000</div><div class="item-status"><span class="sbadge s-ip">In Progress</span> <span class="pay-badge pay-account">💳 Счёт</span></div></div>
-    </div>
-    <div class="item-row">
-      <div class="item-name">Таблички на двери доплата</div>
-      <div class="item-right"><div class="item-price">600</div><div class="item-status"><span class="sbadge s-ip">In Progress</span> <span class="pay-badge pay-account">💳 Счёт</span></div></div>
-    </div>
-
-  </div>
-
-  <div class="phase-block">
-    <div class="phase-header">💻 Электроника <span class="phase-total">29 450 AED</span></div>
-    <div class="item-row">
-      <div class="item-name">Интерактивные доски</div>
-      <div class="item-right"><div class="item-price">21 600</div><div class="item-status"><span class="sbadge s-ip">In Progress</span> <span class="pay-badge pay-account">💳 Счёт</span></div></div>
-    </div>
-    <div class="item-row">
-      <div class="item-name">TV</div>
-      <div class="item-right"><div class="item-price">5 000</div><div class="item-status"><span class="sbadge s-ip">In Progress</span> <span class="pay-badge pay-cash">💵 Нал/карта</span></div></div>
-    </div>
-    <div class="item-row">
-      <div class="item-name">Микроволновка</div>
-      <div class="item-right"><div class="item-price">1 000</div><div class="item-status"><span class="sbadge s-ip">In Progress</span> <span class="pay-badge pay-cash">💵 Нал/карта</span></div></div>
-    </div>
-    <div class="item-row">
-      <div class="item-name">Термометры и измерители влажности</div>
-      <div class="item-right"><div class="item-price">1 000</div><div class="item-status"><span class="sbadge s-">—</span> <span class="pay-badge pay-account">💳 Счёт</span></div></div>
-    </div>
-    <div class="item-row">
-      <div class="item-name">Весы кухонные и напольные</div>
-      <div class="item-right"><div class="item-price">550</div><div class="item-status"><span class="sbadge s-ip">In Progress</span> <span class="pay-badge pay-cash">💵 Нал/карта</span></div></div>
-    </div>
-    <div class="item-row">
-      <div class="item-name">Холодильник медкабинет</div>
-      <div class="item-right"><div class="item-price">800</div><div class="item-status"><span class="sbadge s-ip">In Progress</span> <span class="pay-badge pay-cash">💵 Нал/карта</span></div></div>
-    </div>
-    <div class="item-row">
-      <div class="item-name">Инвентарь для садовника / инструменты</div>
-      <div class="item-right"><div class="item-price">500</div><div class="item-status"><span class="sbadge s-ip">In Progress</span> <span class="pay-badge pay-cash">💵 Нал/карта</span></div></div>
-    </div>
-    <div class="item-row">
-      <div class="item-name">Ламинаторы, байндер</div>
-      <div class="item-right"><div class="item-price">500</div><div class="item-status"><span class="sbadge s-ip">In Progress</span> <span class="pay-badge pay-account">💳 Счёт</span></div></div>
+    <div class="phase-block">
+      <div class="item-row">
+        <div class="item-name">весы кухонные и напольные</div>
+        <div class="item-right"><div class="item-price">550</div><div class="item-meta"><span class="pay-badge pay-cash">💵 Нал</span></div></div>
+      </div>
+      <div class="item-row">
+        <div class="item-name">инвентарь для садовника, инструменты для мелкого ремонта</div>
+        <div class="item-right"><div class="item-price">500</div><div class="item-meta"><span class="pay-badge pay-cash">💵 Нал</span></div></div>
+      </div>
+      <div class="item-row">
+        <div class="item-name">Холодильник мед кабинет</div>
+        <div class="item-right"><div class="item-price">800</div><div class="item-meta"><span class="pay-badge pay-cash">💵 Нал</span></div></div>
+      </div>
+      <div class="item-row">
+        <div class="item-name">докупить зеленых растений в песочницу + зеленая зона</div>
+        <div class="item-right"><div class="item-price">5 000</div><div class="item-meta"><span class="pay-badge pay-cash">💵 Нал</span></div></div>
+      </div>
     </div>
   </div>
 
-  <div class="phase-block">
-    <div class="phase-header">🎨 Декор и отделка <span class="phase-total">3 000 AED</span></div>
-    <div class="item-row">
-      <div class="item-name">Оборудовать медкабинет</div>
-      <div class="item-right"><div class="item-price">2 000</div><div class="item-status"><span class="sbadge s-ip">In Progress</span> <span class="pay-badge pay-cash">💵 Нал/карта</span></div></div>
+  <!-- ===== НЕДЕЛЯ 1: 17–18 ноя ===== -->
+  <div class="week-block">
+    <div class="week-header">
+      <span class="week-title">Неделя 1</span>
+      <span class="week-dates">17–18 ноября</span>
+      <div class="week-total-badges">
+        <span class="wk-account">💳 2 100</span>
+        <span class="wk-cash">💵 700</span>
+        <span class="wk-crypto">₿ 16 610</span>
+      </div>
     </div>
-    <div class="item-row">
-      <div class="item-name">Оснастить кухню (раздача еды)</div>
-      <div class="item-right"><div class="item-price">1 000</div><div class="item-status"><span class="sbadge s-pnd">Pending</span> <span class="pay-badge pay-cash">💵 Нал/карта</span></div></div>
+    <div class="phase-block">
+      <div class="item-row">
+        <div class="item-name">Кейтеринг фемели дей</div>
+        <div class="item-right"><div class="item-price">2 100</div><div class="item-meta"><span class="pay-badge pay-account">💳 Счёт</span></div></div>
+      </div>
+      <div class="item-row">
+        <div class="item-name">дай то дай для деятельности + фемели дей</div>
+        <div class="item-right"><div class="item-price">700</div><div class="item-meta"><span class="pay-badge pay-cash">💵 Нал</span></div></div>
+      </div>
+      <div class="item-row">
+        <div class="item-name">Маркетинг (креативная команда), предоплата</div>
+        <div class="item-right"><div class="item-price">11 110</div><div class="item-meta"><span class="pay-badge pay-crypto">₿ Крипта</span></div></div>
+      </div>
+      <div class="item-row">
+        <div class="item-name">ЗП маркетинг</div>
+        <div class="item-right"><div class="item-price">5 500</div><div class="item-meta"><span class="pay-badge pay-crypto">₿ Крипта</span></div></div>
+      </div>
     </div>
   </div>
 
-  <div class="phase-block">
-    <div class="phase-header">🔧 Ремонтные работы <span class="phase-total">5 000 AED</span></div>
-    <div class="item-row">
-      <div class="item-name">Докупить зелёных растений в песочницу + зелёная зона</div>
-      <div class="item-right"><div class="item-price">5 000</div><div class="item-status"><span class="sbadge s-pnd">Pending</span> <span class="pay-badge pay-cash">💵 Наличные</span></div></div>
+  <!-- ===== НЕДЕЛЯ 2: 24–26 ноя ===== -->
+  <div class="week-block">
+    <div class="week-header">
+      <span class="week-title">Неделя 2</span>
+      <span class="week-dates">24–26 ноября</span>
+      <div class="week-total-badges">
+        <span class="wk-account">💳 12 100</span>
+        <span class="wk-cash">💵 10 475</span>
+      </div>
+    </div>
+    <div class="phase-block">
+      <div class="item-row">
+        <div class="item-name">парковка внешняя</div>
+        <div class="item-right"><div class="item-price">3 000</div><div class="item-meta"><span class="pay-badge pay-cash">💵 Нал</span></div></div>
+      </div>
+      <div class="item-row">
+        <div class="item-name">колоны мягкие</div>
+        <div class="item-right"><div class="item-price">9 000</div><div class="item-meta"><span class="pay-badge pay-account">💳 Счёт</span></div></div>
+      </div>
+      <div class="item-row">
+        <div class="item-name">стулья для родителей разкладные</div>
+        <div class="item-right"><div class="item-price">2 750</div><div class="item-meta"><span class="pay-badge pay-cash">💵 Нал</span></div></div>
+      </div>
+      <div class="item-row">
+        <div class="item-name">мебель в комнату для персонала</div>
+        <div class="item-right"><div class="item-price">1 625</div><div class="item-meta"><span class="pay-badge pay-cash">💵 Нал</span></div></div>
+      </div>
+      <div class="item-row">
+        <div class="item-name">TV</div>
+        <div class="item-right"><div class="item-price">3 500</div><div class="item-meta"><span class="pay-badge pay-cash">💵 Нал</span></div></div>
+      </div>
+      <div class="item-row">
+        <div class="item-name">микроволновка</div>
+        <div class="item-right"><div class="item-price">1 000</div><div class="item-meta"><span class="pay-badge pay-cash">💵 Нал</span></div></div>
+      </div>
+      <div class="item-row">
+        <div class="item-name">термометры и влажность измерители</div>
+        <div class="item-right"><div class="item-price">1 000</div><div class="item-meta"><span class="pay-badge pay-cash">💵 Нал</span></div></div>
+      </div>
+      <div class="item-row">
+        <div class="item-name">мусорные ведра</div>
+        <div class="item-right"><div class="item-price">600</div><div class="item-meta"><span class="pay-badge pay-cash">💵 Нал</span></div></div>
+      </div>
+      <div class="item-row">
+        <div class="item-name">лампы освещения</div>
+        <div class="item-right"><div class="item-price">2 500</div><div class="item-meta"><span class="pay-badge pay-account">💳 Счёт</span></div></div>
+      </div>
+      <div class="item-row">
+        <div class="item-name">таблички на двери доплата</div>
+        <div class="item-right"><div class="item-price">600</div><div class="item-meta"><span class="pay-badge pay-account">💳 Счёт</span></div></div>
+      </div>
     </div>
   </div>
 
-  <div class="phase-block">
-    <div class="phase-header">🚀 Предзапуск <span class="phase-total">26 109 AED</span></div>
-    <div class="item-row">
-      <div class="item-name">Amazon для деятельности + фемели дей</div>
-      <div class="item-right"><div class="item-price">3 241</div><div class="item-status"><span class="sbadge s-pnd">Pending</span> <span class="pay-badge pay-cash">💵 Наличные</span></div></div>
+  <!-- ===== НЕДЕЛЯ 3: 1–4 дек ===== -->
+  <div class="week-block">
+    <div class="week-header">
+      <span class="week-title">Неделя 3</span>
+      <span class="week-dates">1–4 декабря</span>
+      <div class="week-total-badges">
+        <span class="wk-account">💳 31 745</span>
+        <span class="wk-cash">💵 13 000</span>
+      </div>
     </div>
-    <div class="item-row">
-      <div class="item-name">Кейтеринг фемели дей</div>
-      <div class="item-right"><div class="item-price">2 100</div><div class="item-status"><span class="sbadge s-pnd">Pending</span> <span class="pay-badge pay-account">💳 Счёт</span></div></div>
-    </div>
-    <div class="item-row">
-      <div class="item-name">Чистка кондиционеров</div>
-      <div class="item-right"><div class="item-price">4 158</div><div class="item-status"><span class="sbadge s-pnd">Pending</span> <span class="pay-badge pay-account">💳 Счёт</span></div></div>
-    </div>
-    <div class="item-row">
-      <div class="item-name">Маркетинг (креативная команда), предоплата</div>
-      <div class="item-right"><div class="item-price">11 110</div><div class="item-status"><span class="sbadge s-pnd">Pending</span> <span class="pay-badge pay-crypto">₿ Крипта</span></div></div>
-    </div>
-    <div class="item-row">
-      <div class="item-name">ЗП маркетинг</div>
-      <div class="item-right"><div class="item-price">5 500</div><div class="item-status"><span class="sbadge s-pnd">Pending</span> <span class="pay-badge pay-crypto">₿ Крипта</span></div></div>
+    <div class="phase-block">
+      <div class="item-row">
+        <div class="item-name">Интерактивные доски</div>
+        <div class="item-right"><div class="item-price">21 600</div><div class="item-meta"><span class="pay-badge pay-account">💳 Счёт</span></div></div>
+      </div>
+      <div class="item-row">
+        <div class="item-name">оборудовать мед кабинет</div>
+        <div class="item-right"><div class="item-price">2 000</div><div class="item-meta"><span class="pay-badge pay-cash">💵 Нал</span></div></div>
+      </div>
+      <div class="item-row">
+        <div class="item-name">оснастить кухню (роздача еды)</div>
+        <div class="item-right"><div class="item-price">1 000</div><div class="item-meta"><span class="pay-badge pay-cash">💵 Нал</span></div></div>
+      </div>
+      <div class="item-row">
+        <div class="item-name">декор детский и уличные игрушки</div>
+        <div class="item-right"><div class="item-price">10 000</div><div class="item-meta"><span class="pay-badge pay-cash">💵 Нал</span></div></div>
+      </div>
+      <div class="item-row">
+        <div class="item-name">канцтовары</div>
+        <div class="item-right"><div class="item-price">5 000</div><div class="item-meta"><span class="pay-badge pay-account">💳 Счёт</span></div></div>
+      </div>
+      <div class="item-row">
+        <div class="item-name">изготовление ресепшена</div>
+        <div class="item-right"><div class="item-price">5 145</div><div class="item-meta"><span class="pay-badge pay-account">💳 Счёт</span></div></div>
+      </div>
     </div>
   </div>
 
